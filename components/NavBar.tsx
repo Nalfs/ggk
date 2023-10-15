@@ -15,7 +15,7 @@ export default function NavBar() {
             href="/reviews"
             className="text-orange-800 hover:underline font-bold"
           >
-            reviews
+            Reviews
           </Link>
         </li>
         <li>
@@ -23,7 +23,7 @@ export default function NavBar() {
             href="/about"
             className="text-orange-800 hover:underline font-bold"
           >
-            about
+            About
           </Link>
         </li>
       </ul>
