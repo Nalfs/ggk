@@ -1,3 +1,4 @@
+import Heading from "@/components/Heading";
 import Link from "next/link";
 import React from "react";
 
@@ -5,7 +6,7 @@ export default function ReviewsPage() {
   console.log("[reviews]");
   return (
     <>
-      <h1>Reviews</h1>
+      <Heading>Reviews</Heading>
       <p>Here we will list all the reviews</p>
 
       <nav>

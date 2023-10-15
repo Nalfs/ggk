@@ -1,3 +1,4 @@
+import Heading from "@/components/Heading";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,7 +6,7 @@ export default function Home() {
   console.log("[HomePage]");
   return (
     <>
-      <h1>Indie Gamer</h1>
+      <Heading>Indie Gamer</Heading>
       <p className="pb-3">Only the best indie games, reviewed for you.</p>
       <div
         className="bg-white border rounded shadow w-80

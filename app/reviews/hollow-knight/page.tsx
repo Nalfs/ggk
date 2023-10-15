@@ -1,9 +1,10 @@
+import Heading from "@/components/Heading";
 import React from "react";
 
 export default function HollowKnightPage() {
   return (
     <>
-      <h1>HollowKnightPage</h1>
+      <Heading>Hollow Knights Page</Heading>
       <p>Reviews for Hollow Knight will be here</p>
     </>
   );
