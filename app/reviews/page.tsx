@@ -15,7 +15,7 @@ export default function ReviewsPage() {
             <Link href="/reviews/stardew-valley">Stardew Valley Page</Link>
           </li>
           <li>
-            <Link href="/reviews/hollow-knights">Hollow Knight Page</Link>
+            <Link href="/reviews/hollow-knight">Hollow Knight Page</Link>
           </li>
         </ul>
       </nav>
