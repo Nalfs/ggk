@@ -20,7 +20,9 @@ export default function ReviewsPage() {
                 height="180"
                 className="rounded-t"
               />
-              <h2 className="py-1 text-center">Stardew Valley Page</h2>
+              <h2 className="font-semibold font-orbitron py-1 text-center">
+                Stardew Valley Page
+              </h2>
             </Link>
           </li>
           <li className="bg-white border rounded shadow w-80 hover:shadow-xl">
@@ -32,7 +34,9 @@ export default function ReviewsPage() {
                 height="180"
                 className="rounded-t"
               />
-              <h2 className="py-1 text-center">Hollow Knight Page</h2>
+              <h2 className="font-semibold font-orbitron py-1 text-center">
+                Hollow Knight Page
+              </h2>
             </Link>
           </li>
         </ul>
