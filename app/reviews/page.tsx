@@ -4,7 +4,8 @@ import React from "react";
 
 export default function ReviewsPage() {
   console.log("[reviews]");
-  console.log("[reviews]");
+
+  console.log();
   return (
     <>
       <Heading>Reviews</Heading>
