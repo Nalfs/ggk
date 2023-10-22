@@ -1,17 +1,9 @@
 import React from "react";
-import { readFile } from "node:fs/promises";
 import Heading from "@/components/Heading";
-import { marked } from "marked";
-import matter from "gray-matter";
+import { getReview } from "@/lib/reviews";
 
 export default async function StardewvalleyPage() {
-  const text = await readFile("content/reviews/stardew-valley.md", "utf-8");
-  const {
-    content,
-    data: { title, date, image },
-  } = matter(text);
-  const html = marked(content);
-
+  const { title, date, image, body: html } = await getReview("stardew-valley");
   return (
     <>
       <Heading>{title}</Heading>
