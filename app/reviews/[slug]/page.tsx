@@ -2,8 +2,8 @@ import React from "react";
 import Heading from "@/components/Heading";
 import { getReview } from "@/lib/reviews";
 
-export default async function StardewvalleyPage() {
-  const { title, date, image, body: html } = await getReview("stardew-valley");
+export default async function ReviewPage(props: { params: { slug: string } }) {
+  const { title, date, image, body: html } = await getReview(props.params.slug);
   return (
     <>
       <Heading>{title}</Heading>
