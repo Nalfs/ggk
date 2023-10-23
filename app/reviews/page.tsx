@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/reviews";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Reviews",
+};
 
 export default async function ReviewsPage() {
   const reviews = await getReviews();
