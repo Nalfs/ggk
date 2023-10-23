@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Heading from "@/components/Heading";
 import { getReview, getSlugs } from "@/lib/reviews";
+import ShareLinkButton from "@/components/ShareLinkButton";
 interface ReviewPageParams {
   slug: string;
 }
@@ -31,7 +32,10 @@ export default async function ReviewPage({
   return (
     <>
       <Heading>{title}</Heading>
-      <p className="italic pb-2">{date}</p>
+      <div className="flex gap-3 items-baseline">
+        <p className="italic pb-2">{date}</p>
+        <ShareLinkButton />
+      </div>
       <img
         src={image}
         alt=""
