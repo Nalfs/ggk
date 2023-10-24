@@ -6,9 +6,9 @@ export default function ShareLinkButton() {
   const handleClick = () => {
     navigator.clipboard.writeText(window.location.href);
     setClicked(true);
-    setTimeout(() => setClicked(false), 1500);
+    setTimeout(() => setClicked(false), 150000);
   };
-
+  console.log("test");
   return (
     <button
       onClick={handleClick}

@@ -35,6 +35,7 @@ export default function RootLayout({
           >
             RAWG
           </a>
+          <p>Nadim Al-Sharif</p>
         </footer>
       </body>
     </html>
