@@ -2,6 +2,8 @@ import Heading from "@/components/Heading";
 import { getFeaturedReview } from "@/lib/reviews";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 export default async function Home() {
   console.log("[HomePage]");
   const review = await getFeaturedReview();
@@ -26,9 +28,12 @@ export default async function Home() {
           </h2>
         </Link>
       </div>
+      <div>
+        <Button>Click me</Button>
+      </div>
+      <div className="bg-zinc-950 dark:bg-white">
+        teststststststststststststst
+      </div>
     </>
   );
-}
-function getLatestReviews() {
-  throw new Error("Function not implemented.");
 }

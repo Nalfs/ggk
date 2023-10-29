@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { exo2, orbitron } from "./fonts";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${exo2.variable} ${orbitron.variable}`}>
-      <body className="bg-orange-50 flex flex-col px-4 py-2 min-h-screen">
+      <body
+        className={
+          (cn(
+            "min-h-screen bg-background font-sans antialiased flex flex-col px-4 py-2"
+          ),
+          exo2.variable)
+        }
+      >
         <header>
           {" "}
           <NavBar />
