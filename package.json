@@ -17,6 +17,7 @@
     "lucide-react": "^0.290.0",
     "marked": "^9.1.2",
     "next": "latest",
+    "qs": "^6.11.2",
     "react": "latest",
     "react-dom": "latest",
     "tailwind-merge": "^1.14.0",
