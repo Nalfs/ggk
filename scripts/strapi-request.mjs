@@ -2,7 +2,7 @@ import { writeFileSync } from "node:fs";
 import qs from "qs";
 
 const url =
-  "http://localhost:8484/api/reviews" +
+  "http://127.0.0.1:8484/api/reviews" +
   "?" +
   qs.stringify(
     {
