@@ -64,10 +64,12 @@ export async function getReviews(): Promise<Review[]> {
 }
 
 export async function getSlugs(): Promise<string[]> {
-  const files = await readdir("./content/reviews");
-  return files
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => file.slice(0, -".md".length));
+  const { data } = await fetchReviews({
+    fields: ["slug"],
+    sort: ["publishedAt:desc"],
+    pagination: { pageSize: 100 },
+  });
+  return data.map((item: CmsItem) => item.attributes.slug);
 }
 
 async function fetchReviews(parameters: any) {
@@ -89,5 +91,6 @@ function toReview(item: CmsItem): Review {
     title: attributes.title,
     date: attributes.publishedAt.slice(0, "yyyy-mm-dd".length),
     image: CMS_URL + attributes.image.data.attributes.url,
+    body: null, // or you can set a default value for the body property
   };
 }
