@@ -17,17 +17,15 @@ async function fetchMembers() {
   return response; // Returning the response object
 }
 
+// async function getLogs() {
+//   const url =
 
-async function getLogs() {
-  const url = 
+//     const response =
+//     UrlFetchApp.fetch("https://www.warcraftlogs.com/v1/parses/character/Fistweaverz/Illidan/US?
+//     api_key=xxxxx");
 
-    const response =
-    UrlFetchApp.fetch("https://www.warcraftlogs.com/v1/parses/character/Fistweaverz/Illidan/US? 
-    api_key=xxxxx");
-  
-    
-    var json = response.getContentText();
-    var data = JSON.parse(json);
-  
-    Logger.log(data["percentile"]);
-  }
+//     var json = response.getContentText();
+//     var data = JSON.parse(json);
+
+//     Logger.log(data["percentile"]);
+//   }
