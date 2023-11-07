@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 };
 
 export default async function ReviewsPage() {
-  const reviews = await getReviews();
+  // const reviews = await getReviews();
   return (
     <>
       <Heading>Reviews</Heading>
       <p>Here we will list all the reviews</p>
 
       <nav>
-        <ul className="flex flex-row flex-wrap gap-3">
+        {/* <ul className="flex flex-row flex-wrap gap-3">
           {reviews.map((review) => (
             <>
               <li
@@ -38,7 +38,7 @@ export default async function ReviewsPage() {
               </li>
             </>
           ))}
-        </ul>
+        </ul> */}
       </nav>
     </>
   );
