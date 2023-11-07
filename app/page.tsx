@@ -1,16 +1,6 @@
 import Heading from "@/components/Heading";
-import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+
 import DemoPageTable from "./payment/page";
 import GuildPage from "./guild/page";
 
@@ -22,29 +12,7 @@ export default async function Home() {
       <GuildPage />
       <Heading>Indie Gamer</Heading>
       <p className="pb-3">Only the best indie games, reviewed for you.</p>
-      <div className="bg-white border rounded shadow w-80 hover:shadow-xl sm:w-full">
-        {/* <Link
-          href={`/reviews/${review.slug}`}
-          className="flex flex-col sm:flex-row"
-        >
-          <img
-            src={review.image}
-            alt=""
-            width="320"
-            height="180"
-            className="rounded-t sm:rounded-l sm:rounded-r-none"
-          />
-          <h2 className="font-semibold font-orbitron py-1 text-center sm:px-2">
-            {review.title}
-          </h2>
-        </Link> */}
-      </div>
-      <div>
-        <Button>Click me</Button>
-      </div>
-      <div className="bg-zinc-950 dark:bg-white">
-        teststststststststststststst
-      </div>
+      <div className="bg-white border rounded shadow w-80 hover:shadow-xl sm:w-full"></div>
 
       <DemoPageTable />
     </>
