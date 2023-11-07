@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -35,7 +34,6 @@ export const columns: ColumnDef<Log>[] = [
     // header: "ID",
     cell: ({ row }) => {
       const log = row.original;
-      // return <div onClick={handleClick(log.id)}>{log.id}</div>;
       return <Link href={`/logs/${log.id}`}>{log.id} </Link>;
     },
   },
