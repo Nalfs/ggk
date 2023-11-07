@@ -1,6 +1,6 @@
 import Heading from "@/components/Heading";
 import Image from "next/image";
-import { getMembers } from "@/lib/members";
+import { getMembers, getGuildLogs } from "@/lib/members";
 import {
   Card,
   CardContent,
@@ -15,7 +15,6 @@ import Link from "next/link";
 export default async function GuildPage() {
   const data = await getMembers();
 
-  console.log("sdfgsdfd", data.members[0]);
   // Check if members is available and an array
   if (data && Array.isArray(data.members)) {
     return (

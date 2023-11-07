@@ -7,6 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  console.log("[About]");
   return <Heading>About</Heading>;
 }

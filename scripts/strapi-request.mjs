@@ -13,10 +13,10 @@ const url =
     },
     { encodeValuesOnly: true }
   );
-console.log("url:", url);
+
 const response = await fetch(url);
 const body = await response.json();
-console.log("body:", body);
+
 const formatted = JSON.stringify(body, null, 2);
 const file = "scripts/strapi-response.json";
 writeFileSync(file, formatted, "utf8");

@@ -3,25 +3,25 @@ import React from "react";
 
 export default function NavBar() {
   return (
-    <nav>
-      <ul className="flex gap-2">
-        <li>
+    <nav className="bg-customGray p-0 md:p-4">
+      <ul className="flex justify-between items-center h-20 px-40">
+        <li className="px-2 md:px-0">
           <Link
             href="/"
-            className="font-orbitron bold text-orange-800 hover:underline font-bold"
+            className="font-orbitron text-orange-800 hover:underline font-bold"
           >
-            Indie Gamer
+            GGK Gamer
           </Link>
         </li>
-        <li className="ml-auto">
+        <li>
           <Link
-            href="/reviews"
+            href="/logs"
             className="text-orange-800 hover:underline font-bold"
           >
-            Reviews
+            Logs
           </Link>
         </li>
-        <li className="ml-auto">
+        <li>
           <Link
             href="/about"
             className="text-orange-800 hover:underline font-bold"

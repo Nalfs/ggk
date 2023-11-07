@@ -1,20 +1,18 @@
 import Heading from "@/components/Heading";
-import { Button } from "@/components/ui/button";
-
-import DemoPageTable from "./payment/page";
 import GuildPage from "./guild/page";
+import { getGuildLogs } from "@/lib/members";
+// import Logs from "@/components/Logs/Logs";
 
 export default async function Home() {
-  console.log("[HomePage]");
-  // const review = await getFeaturedReview();
+  // const data = await getGuildLogs();
   return (
     <>
+      <div>{/* <Logs logs={data} /> */}</div>
+      <Heading>GGK</Heading>
+      <p className="pb-3">Gammal är äldst.</p>
       <GuildPage />
-      <Heading>Indie Gamer</Heading>
-      <p className="pb-3">Only the best indie games, reviewed for you.</p>
-      <div className="bg-white border rounded shadow w-80 hover:shadow-xl sm:w-full"></div>
 
-      <DemoPageTable />
+      <div className="bg-white border rounded shadow w-80 hover:shadow-xl sm:w-full"></div>
     </>
   );
 }

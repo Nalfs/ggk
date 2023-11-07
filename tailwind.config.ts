@@ -20,6 +20,7 @@ module.exports = {
         orbitron: ["var(--font-orbitron)", "sans-serif"],
       },
       colors: {
+        customGray: "#1A1A1A",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
