@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Heading from "@/components/Heading";
 import ShareLinkButton from "@/components/ShareLinkButton";
-import { getGuildLog } from "@/lib/members";
+import { getGuildLog, showKills, FormattedKill } from "@/lib/members";
 import { formatTime } from "@/lib/utils";
 
 interface LogPageParams {
@@ -16,8 +16,9 @@ interface LogPageProps {
 export default async function LogPage({ params: { slug } }: LogPageProps) {
   //   console.log("[ReviewPage]", slug);
   const log = await getGuildLog(slug);
+  const killsToShow: FormattedKill[] = showKills(log.fights);
   //   const { title, date, image, body: html } = await getReview(slug);
-  //   console.log("[LogPage]", slug);
+  console.log("[LogPage]", log);
   console.log("[LogPage]", log.end);
   return (
     <>
@@ -34,7 +35,20 @@ export default async function LogPage({ params: { slug } }: LogPageProps) {
       <p>
         <strong>End:</strong> {formatTime(log.end)}
       </p>
-      <p>Members in raid</p>
+      <Heading>Fights</Heading>
+      {killsToShow.map((kill, index) => (
+        <div key={index}>
+          <p>
+            Name: <strong>{kill.name}</strong>
+          </p>
+          <p>Duration: {kill.duration}</p>
+        </div>
+      ))}
+      {/* {(log.fights as Friend[]).map((friend: Friend) => {
+        return <p key={friend.id}>{friend.name}</p>;
+      })} */}
+      {/* {showKills(log.fights)} */}
+      <Heading>Members in raid</Heading>
       {(log.friendlies as Friend[]).map((friend: Friend) => {
         return <p key={friend.id}>{friend.name}</p>;
       })}

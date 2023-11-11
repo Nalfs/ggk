@@ -11,90 +11,47 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Log = {
+export type Payment = {
   id: string;
-  title: string;
-  owner: string;
-  start: any;
-  end: any;
+  amount: number;
+  status: "pending" | "processing" | "success" | "failed";
+  email: string;
 };
 
-// const handleClick = (context: any) => () => {
-//   console.log(context);
-//   alert(`Clicked log ID: ${context}`);
-// };
-
-export const columns: ColumnDef<Log>[] = [
+export const columns: ColumnDef<Payment>[] = [
   {
-    accessorKey: "id",
-    // header: "ID",
+    accessorKey: "status",
+    header: "Status",
+  },
+  {
+    accessorKey: "email",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Email
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "amount",
+    header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
-      const log = row.original;
-      return <Link href={`/logs/${log.id}`}>{log.id} </Link>;
+      const amount = parseFloat(row.getValue("amount"));
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount);
+
+      return <div className="text-right font-medium">{formatted}</div>;
     },
-  },
-  {
-    accessorKey: "title",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Title
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "owner",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="px-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Owner
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "start",
-    // header: ({ column }) => {
-    //   return (
-    //     <Button
-    //       variant="ghost"
-    //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    //     >
-    //       Start
-    //       <ArrowUpDown className="ml-2 h-4 w-4" />
-    //     </Button>
-    //   );
-    // },
-    header: "Start",
-  },
-  {
-    accessorKey: "end",
-    // header: ({ column }) => {
-    //   return (
-    //     <Button
-    //       variant="ghost"
-    //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    //     >
-    //       End
-    //       <ArrowUpDown className="ml-2 h-4 w-4" />
-    //     </Button>
-    //   );
-    // },
-    header: "End",
   },
   {
     id: "actions",

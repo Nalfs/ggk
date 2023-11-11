@@ -3,7 +3,7 @@ import React from "react";
 
 export default function NavBar() {
   return (
-    <nav className="bg-customGray p-0 md:p-4">
+    <nav className="bg-white p-0 md:p-4">
       <ul className="flex justify-between items-center h-20 px-40">
         <li className="px-2 md:px-0">
           <Link

@@ -71,3 +71,67 @@ export async function getGuildLogs() {
     return [];
   }
 }
+
+interface BossData {
+  boss: number;
+  bossPercentage: number;
+  difficulty: number;
+  end_time: number;
+  fightPercentage: number;
+  id: number;
+  inProgress: boolean;
+  kill: boolean;
+  lastPhaseAsAbsoluteIndex: number;
+  lastPhaseForPercentageDisplay: number;
+  maps: number[];
+  name: string;
+  partial: number;
+  size: number;
+  start_time: number;
+  zoneDifficulty: number;
+  zoneID: number;
+  zoneName: string;
+}
+
+export interface FormattedKill {
+  name: string;
+  duration: string;
+}
+
+export const showKills = (bossData: BossData[]): FormattedKill[] => {
+  // Filter for objects where kill is true
+  const killObjects = bossData.filter((boss) => boss.kill);
+
+  // Map the filtered objects to a new array with the desired format
+  const formattedData: FormattedKill[] = killObjects.map((boss) => {
+    const durationInSeconds = (boss.end_time - boss.start_time) / 1000;
+    const durationFormatted = formatDuration(durationInSeconds);
+
+    return {
+      name: boss.name,
+      duration: durationFormatted,
+    };
+  });
+
+  return formattedData;
+};
+
+// Function to format duration in HH:mm:ss
+const formatDuration = (durationInSeconds: number): string => {
+  const hours = Math.floor(durationInSeconds / 3600);
+  const minutes = Math.floor((durationInSeconds % 3600) / 60);
+  const seconds = Math.floor(durationInSeconds % 60);
+
+  return `${hours}:${minutes < 10 ? "0" : ""}${minutes}:${
+    seconds < 10 ? "0" : ""
+  }${seconds}`;
+};
+
+// Example usage
+const bossData: BossData[] = [
+  // ... your array of boss objects
+];
+
+const killsToShow: FormattedKill[] = showKills(bossData);
+
+console.log(killsToShow);
