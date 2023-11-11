@@ -34,9 +34,9 @@ export default function RootLayout({
           {" "}
           <NavBar />
         </header>
-        <main className="flex flex-row justify-center mx-auto py-3 ">
-          <div className="bg-white rounded">{children}</div>
-          <div className="bg-white rounded">
+        <main className="flex flex-row justify-center mx-auto py-3 shadow-lg">
+          <div className="bg-white p-6 shadow-lg">{children}</div>
+          <div className="bg-white shadow-lg">
             <CalendarComponent />
           </div>
         </main>
