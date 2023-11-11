@@ -38,11 +38,11 @@ async function getData(): Promise<any[]> {
 
 export default async function LogsPage() {
   const logs = await getGuildLogs();
-  const data = await getData();
+
   return (
     <>
       <Heading>Logs Page</Heading>
-      <DemoPageTable />
+
       <div className="container mx-auto py-10">
         <DataTable columns={columns} data={logs} />
       </div>

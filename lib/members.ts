@@ -20,9 +20,9 @@ async function fetchMembers() {
 
 export async function getGuildLog(param: string) {
   const apiKey = process.env.CLIENT_KEY;
-  console.log("[param]", param);
+  //console.log("[param]", param);
   const url = `https://www.warcraftlogs.com/v1/report/fights/${param}?api_key=${apiKey}`;
-  console.log("[url]", url);
+  //console.log("[url]", url);
 
   try {
     const response = await fetch(url);
@@ -126,12 +126,3 @@ const formatDuration = (durationInSeconds: number): string => {
     seconds < 10 ? "0" : ""
   }${seconds}`;
 };
-
-// Example usage
-const bossData: BossData[] = [
-  // ... your array of boss objects
-];
-
-const killsToShow: FormattedKill[] = showKills(bossData);
-
-console.log(killsToShow);

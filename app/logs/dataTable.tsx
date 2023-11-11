@@ -50,7 +50,7 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  console.log("table data", data);
+  //console.log("table data", data);
 
   return (
     <div className="rounded">

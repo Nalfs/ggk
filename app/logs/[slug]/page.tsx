@@ -4,6 +4,7 @@ import Heading from "@/components/Heading";
 import ShareLinkButton from "@/components/ShareLinkButton";
 import { getGuildLog, showKills, FormattedKill } from "@/lib/members";
 import { formatTime } from "@/lib/utils";
+import { CharacterList } from "@/components/CharacterList/CharacterList";
 
 interface LogPageParams {
   slug: string;
@@ -14,55 +15,41 @@ interface LogPageProps {
 }
 
 export default async function LogPage({ params: { slug } }: LogPageProps) {
-  //   console.log("[ReviewPage]", slug);
   const log = await getGuildLog(slug);
   const killsToShow: FormattedKill[] = showKills(log.fights);
-  //   const { title, date, image, body: html } = await getReview(slug);
-  console.log("[LogPage]", log);
-  console.log("[LogPage]", log.end);
+
   return (
     <>
-      <Heading>Log: {slug}</Heading>
-      <div className="flex gap-3 items-baseline">
-        {/* <p className="italic pb-2">{date}</p> */}
-        <ShareLinkButton />
-      </div>
-      {/* <p>Start{new Date(log.start).toDateString()}</p>
-      <p>End{new Date(log.end).toDateString()}</p> */}
-      <p>
-        <strong>Start:</strong> {formatTime(log.start)}
-      </p>
-      <p>
-        <strong>End:</strong> {formatTime(log.end)}
-      </p>
-      <Heading>Fights</Heading>
-      {killsToShow.map((kill, index) => (
-        <div key={index}>
+      <div className="flex justify-center text-center">
+        <div className="flex-col justify-center text-center">
+          <Heading>Log: {slug}</Heading>
+          <ShareLinkButton />
           <p>
-            Name: <strong>{kill.name}</strong>
+            <strong>Start:</strong> {formatTime(log.start)}
           </p>
-          <p>Duration: {kill.duration}</p>
+          <p>
+            <strong>End:</strong> {formatTime(log.end)}
+          </p>
         </div>
-      ))}
-      {/* {(log.fights as Friend[]).map((friend: Friend) => {
-        return <p key={friend.id}>{friend.name}</p>;
-      })} */}
-      {/* {showKills(log.fights)} */}
-      <Heading>Members in raid</Heading>
-      {(log.friendlies as Friend[]).map((friend: Friend) => {
-        return <p key={friend.id}>{friend.name}</p>;
-      })}
-      {/* <img
-        src={image}
-        alt=""
-        width="640"
-        height="360"
-        className="mb-2 rounded"
-      />
-      <article
-        dangerouslySetInnerHTML={{ __html: html }}
-        className="max-w-screen-sm prose prose-slate"
-      /> */}
+      </div>
+      <div className="flex justify-center">
+        <div>
+          <Heading>Fights</Heading>
+          {killsToShow.map((kill, index) => (
+            <div key={index}>
+              <p>
+                Name: <strong>{kill.name}</strong>
+              </p>
+              <p>Duration: {kill.duration}</p>
+            </div>
+          ))}
+        </div>
+        <div>
+          <Heading>Members in raid</Heading>
+
+          <CharacterList characters={log.friendlies as Friend[]} />
+        </div>
+      </div>
     </>
   );
 }
