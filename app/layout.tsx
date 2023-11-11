@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { exo2, orbitron } from "./fonts";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import CalendarComponent from "@/components/Calendar/Calendar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,17 +34,20 @@ export default function RootLayout({
           {" "}
           <NavBar />
         </header>
-        <main className="grow py-3">
+        <main className="flex flex-row py-3 ">
           <div className="w-4/5 mx-auto bg-white rounded">{children}</div>
+          <div className="bg-white rounded">
+            <CalendarComponent />
+          </div>
         </main>
         <footer className="border-t py-3 text-center text-slate-500 text-xs mb-80">
           Game Data & Images courtesy of{" "}
           <a
-            href="https://rawg.io/"
+            href="https://www.warcraftlogs.com/"
             target="blank"
             className="text-orange-800 hover:underline"
           >
-            RAWG
+            WCL
           </a>
           <p>Nadim Al-Sharif</p>
         </footer>

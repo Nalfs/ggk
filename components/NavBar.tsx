@@ -23,6 +23,14 @@ export default function NavBar() {
         </li>
         <li>
           <Link
+            href="/members"
+            className="text-orange-800 hover:underline font-bold"
+          >
+            Members
+          </Link>
+        </li>
+        <li>
+          <Link
             href="/about"
             className="text-orange-800 hover:underline font-bold"
           >

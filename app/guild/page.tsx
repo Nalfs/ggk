@@ -21,12 +21,6 @@ export default async function GuildPage() {
       <>
         <div className="px-10">
           <Heading>Guild Page</Heading>
-          <Image
-            src="/images/wow.jpg"
-            width={500}
-            height={500}
-            alt="Picture of the author"
-          />
           <p>{data.name}</p>
           <p>{data.faction}</p>
           <p>
