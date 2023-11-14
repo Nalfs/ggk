@@ -5,12 +5,12 @@ import Image from "next/image";
 export default async function Home() {
   return (
     <>
-      <Heading>GGK</Heading>
+      <Heading>GGK - Gamla Gubbar Kan</Heading>
       <p className="pb-3">Gammal är äldst.</p>
       <div>
         {" "}
         <BackgroundImage />
-       {/*  <Image
+        {/*  <Image
           src="/images/wow.jpg"
           width={500}
           height={500}
