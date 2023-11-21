@@ -21,12 +21,12 @@ interface CharacterListProps {
 }
 
 export const CharacterList: React.FC<CharacterListProps> = ({ characters }) => {
-  //console.log(characters);
   return (
     <div>
       {characters.map(
         (character) =>
-          character.type !== "Pet" && (
+          character.type !== "Pet" &&
+          character.type !== "NPC" && (
             <Card className="m-2 w-m py-1 px-1" key={character.id}>
               <CardContent>
                 <div className="flex">

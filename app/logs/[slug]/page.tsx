@@ -34,7 +34,7 @@ export default async function LogPage({ params: { slug } }: LogPageProps) {
       </div>
       <div className="flex justify-center">
         <div>
-          <Heading>Fights</Heading>
+          <Heading>Session</Heading>
           {killsToShow.map((kill, index) => (
             <div key={index}>
               <p>
