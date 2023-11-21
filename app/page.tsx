@@ -10,7 +10,6 @@ export default async function Home() {
       <div>
         <LogsPage />
 
-        <Button> Hello</Button>
         {/* <Heading>GGK - Gamla Gubbar Kan</Heading>
       <p className="pb-3">Gammal är äldst.</p>
       <div>
