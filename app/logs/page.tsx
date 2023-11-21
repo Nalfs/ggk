@@ -23,7 +23,9 @@ export default async function LogsPage() {
 
   return (
     <>
-      <Heading>Logs Page</Heading>
+      <div className="mx-8">
+        <Heading>Logs Page</Heading>
+      </div>
 
       <div className="container mx-auto py-10">
         <DataTable columns={columns} data={logs} />
