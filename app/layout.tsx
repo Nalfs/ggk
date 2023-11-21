@@ -14,8 +14,28 @@ export const metadata: Metadata = {
     default: "Indie Gamer",
     template: "%s | Indie Gamer",
   },
+  openGraph: {
+    title: "GGK",
+    description: "GGK Web page",
+    url: "https://ggk-nu.vercel.app/",
+    siteName: "GGK",
+    images: [
+      {
+        url: "https://gcdnb.pbrd.co/images/W5tUPtAtbxaO.png?o=1",
+        width: 800,
+        height: 600,
+      },
+      {
+        url: "https://gcdnb.pbrd.co/images/W5tUPtAtbxaO.png?o=1",
+        width: 1800,
+        height: 1600,
+        alt: "My custom alt",
+      },
+    ],
+    locale: "en_SE",
+    type: "website",
+  },
 };
-
 export default function RootLayout({
   children,
 }: {
@@ -23,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${exo2.variable} ${orbitron.variable}`}>
-      <Head>
+      {/* <Head>
         <title>GGK</title>
         <meta name="GGK" content="Everything GGK" />
         <meta property="og:title" content="GGK Web page" />
@@ -46,7 +66,7 @@ export default function RootLayout({
         <meta property="og:image:height" content="630" />
 
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
       <body
         className={
           (cn(
