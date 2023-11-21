@@ -16,17 +16,17 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "GGK",
-    description: "GGK Web page",
+    description: "GGK Web page & evcerything GGK.",
     url: "https://ggk-nu.vercel.app/",
     siteName: "GGK",
     images: [
       {
-        url: "https://gcdnb.pbrd.co/images/W5tUPtAtbxaO.png?o=1",
+        url: "https://ibb.co/Fwy81Sv",
         width: 800,
         height: 600,
       },
       {
-        url: "https://gcdnb.pbrd.co/images/W5tUPtAtbxaO.png?o=1",
+        url: "https://ibb.co/Fwy81Sv",
         width: 1800,
         height: 1600,
         alt: "My custom alt",
