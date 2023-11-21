@@ -5,6 +5,7 @@ import { exo2, orbitron } from "./fonts";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import CalendarComponent from "@/components/Calendar/Calendar";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,30 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${exo2.variable} ${orbitron.variable}`}>
+      <Head>
+        <title>GGK</title>
+        <meta name="GGK" content="Everything GGK" />
+        <meta property="og:title" content="GGK Web page" />
+        <meta property="og:description" content="GGK Web page" />
+        <meta
+          data-n-head="ssr"
+          data-hid="og:image:type"
+          property="og:image:type"
+          content="image/png"
+        />
+        <meta
+          property="og:image"
+          content="https://gcdnb.pbrd.co/images/W5tUPtAtbxaO.png?o=1"
+        />
+        <meta property="og:image:alt" content="GGK Web page" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:url" content="<generated>" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body
         className={
           (cn(
@@ -32,8 +57,10 @@ export default function RootLayout({
       >
         <header> {/* <NavBar /> */}</header>
         <main className="flex flex-row justify-center  mx-auto py-3 shadow-lg">
-          <div className="bg-white p-6 shadow-lg">{children}</div>
-          <div className="bg-white shadow-lg">
+          {/* <div className="bg-white p-6 shadow-lg">{children}</div>
+          <div className="bg-white shadow-lg"> */}
+          <div className=" shadow-lg">{children}</div>
+          <div className=" shadow-lg">
             <CalendarComponent />
           </div>
         </main>
