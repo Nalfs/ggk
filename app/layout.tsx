@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     siteName: "GGK",
     images: [
       {
-        url: "https://ibb.co/Fwy81Sv",
+        url: "https://i.ibb.co/Fwy81Sv/ggk-thumbnail.png",
         width: 800,
         height: 600,
       },
       {
-        url: "https://ibb.co/Fwy81Sv",
+        url: "https://i.ibb.co/WyMBXb9/ggk-thumbnail.png",
         width: 1800,
         height: 1600,
         alt: "My custom alt",
