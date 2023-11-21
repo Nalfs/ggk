@@ -114,11 +114,11 @@ export const columns: ColumnDef<Log>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
-              Copy payment ID
+              Copy Log ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>View log</DropdownMenuItem>
+            <DropdownMenuItem>View log details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
