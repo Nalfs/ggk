@@ -19,7 +19,7 @@ export default async function LogPage({ params: { slug } }: LogPageProps) {
   const killsToShow: FormattedKill[] = showKills(log.fights);
 
   return (
-    <>
+    <div className="px-2">
       <div className="flex justify-center text-center">
         <div className="flex-col justify-center text-center">
           <Heading>Log: {slug}</Heading>
@@ -50,6 +50,6 @@ export default async function LogPage({ params: { slug } }: LogPageProps) {
           <CharacterList characters={log.friendlies as Friend[]} />
         </div>
       </div>
-    </>
+    </div>
   );
 }

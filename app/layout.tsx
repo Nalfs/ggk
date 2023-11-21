@@ -76,7 +76,8 @@ export default function RootLayout({
         }
       >
         <header> {/* <NavBar /> */}</header>
-        <main className="flex flex-row justify-center  mx-auto py-3 shadow-lg">
+        {/* <main className="flex flex-row justify-center  mx-auto py-3 shadow-lg"> */}
+        <main>
           {/* <div className="bg-white p-6 shadow-lg">{children}</div>
           <div className="bg-white shadow-lg"> */}
           <div className="shadow-lg">{children}</div>
