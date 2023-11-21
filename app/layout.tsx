@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Indie Gamer",
-    template: "%s | Indie Gamer",
+    default: "GGK Gamer",
+    template: "%s | GGK Gamer",
   },
   openGraph: {
     title: "GGK",
