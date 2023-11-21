@@ -23,6 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -115,8 +116,9 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <p>{data.length} items</p>
-        <Button
+        {/* <p>{data.length} items</p> */}
+        <DataTablePagination table={table} />
+        {/* <Button
           className="bg-white"
           variant="outline"
           size="sm"
@@ -133,7 +135,7 @@ export function DataTable<TData, TValue>({
           disabled={!table.getCanNextPage()}
         >
           Next
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
