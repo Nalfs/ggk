@@ -1,0 +1,16 @@
+/* Container styles */
+.iframe-container {
+  width: 100%;
+  height: 1200px; /* Adjust height as needed */
+  position: relative;
+}
+
+/* Webkit-specific scrollbar styling for the container */
+.iframe-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbars in WebKit browsers */
+}
+
+/* Optional: Hide scrollbars in Firefox */
+.iframe-container {
+  overflow: hidden; /* Hide overflow in the container */
+}

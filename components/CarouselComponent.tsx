@@ -17,6 +17,7 @@ const imagePaths = [
   "/images/guild/IMG_0371.jpg",
   "/images/guild/IMG_0751.jpg",
   "/images/guild/IMG_0934.jpg",
+  "/images/guild/diego_knight.jpg",
   "/images/guild/IMG_0996.jpg",
   "/images/guild/IMG_0998.jpg",
   "/images/guild/IMG_5304.jpg",
