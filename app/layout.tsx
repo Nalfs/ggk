@@ -6,6 +6,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import CalendarComponent from "@/components/Calendar/Calendar";
 import Head from "next/head";
+import HeaderComponent from "@/components/HeaderComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -75,7 +76,11 @@ export default function RootLayout({
           exo2.variable)
         }
       >
-        <header> {/* <NavBar /> */}</header>
+        <header>
+          {" "}
+          {/* <NavBar /> */}
+          <HeaderComponent />
+        </header>
         {/* <main className="flex flex-row justify-center  mx-auto py-3 shadow-lg"> */}
         <main>
           {/* <div className="bg-white p-6 shadow-lg">{children}</div>

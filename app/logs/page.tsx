@@ -23,11 +23,10 @@ export default async function LogsPage() {
 
   return (
     <>
-      <div className="mx-8">
-        <Heading>Logs Page</Heading>
-      </div>
-
       <div className="container mx-auto py-10">
+        <div>
+          <Heading>Logs Page</Heading>
+        </div>
         <DataTable columns={columns} data={logs} />
       </div>
     </>
