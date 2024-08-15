@@ -9,7 +9,7 @@ const LazyIframe = () => {
       frameBorder="0"
       marginHeight={0}
       marginWidth={0}
-      style={{ border: "none" }}
+      style={{ border: "none", height: "100%" }}
     >
       Loading…
     </iframe>
