@@ -72,7 +72,6 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
           <TableRow>
             <TableCell>Class</TableCell>
             <TableCell>Count</TableCell>
-            <TableCell>Icon</TableCell>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -82,17 +81,18 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
               return (
                 <TableRow key={classKey}>
                   <TableCell style={{ color: wowClass.color }}>
-                    {wowClass.name}
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      {wowClass.name}
+                      <Image
+                        src={wowClass.icon}
+                        alt={wowClass.name}
+                        width={16}
+                        height={16}
+                        style={{ marginLeft: "8px" }}
+                      />
+                    </div>
                   </TableCell>
                   <TableCell>{classCounts[classKey]}</TableCell>
-                  <TableCell>
-                    <Image
-                      src={wowClass.icon}
-                      alt={wowClass.name}
-                      width={32}
-                      height={32}
-                    />
-                  </TableCell>
                 </TableRow>
               );
             }
