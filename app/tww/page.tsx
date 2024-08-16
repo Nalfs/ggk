@@ -1,16 +1,16 @@
 "use client";
 import React, { Suspense } from "react";
 import Heading from "@/components/Heading";
-/* import { useGetResponses } from "@/lib/responses";
-import ResultsComponent from "@/components/ResultsComponent"; */
-// import { Skeleton } from "@/components/ui/skeleton";
+import { useGetResponses } from "@/lib/responses";
+/* import ResultsComponent from "@/components/ResultsComponent"; */
 
+/* import { data } from "@/lib/data"; */
 // Lazy load the iframe component
 const LazyIframe = React.lazy(() => import("../../components/LazyIframe"));
 
 const Page = () => {
-  /*   const { data, loading, error } = useGetResponses(); */
-
+  const { data, loading, error } = useGetResponses();
+  console.log("data", data);
   return (
     <>
       <div className="container mx-auto py-10">
@@ -18,8 +18,8 @@ const Page = () => {
           <div>
             <Heading>The War Within</Heading>
           </div>
-          {/* 
-          <ResultsComponent data={data} /> */}
+
+          {/* <ResultsComponent data={data} /> */}
           <div className="flex items-center justify-center h-20">
             <div className="flex items-center space-x-2">
               <span>Vi tar tempen</span>
