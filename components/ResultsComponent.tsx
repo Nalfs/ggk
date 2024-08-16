@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
@@ -23,7 +24,6 @@ const ResultsComponent = ({ data }: any) => {
       }, {})
     : {};
 
-  // Calculate role percentages
   const totalResponses = data.length;
   const rolePercentages = Object.keys(roleCounts).map((role) => ({
     role,
@@ -54,7 +54,7 @@ const ResultsComponent = ({ data }: any) => {
             <p>
               {count} ({percentage}%)
             </p>
-            <Progress value={parseFloat(percentage)} />
+            {/*   <Progress value={parseFloat(percentage)} /> */}
           </CardContent>
         </Card>
       ))}

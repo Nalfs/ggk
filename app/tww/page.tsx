@@ -2,7 +2,7 @@
 import React, { Suspense } from "react";
 import Heading from "@/components/Heading";
 import { useGetResponses } from "@/lib/responses";
-/* import ResultsComponent from "@/components/ResultsComponent"; */
+import ResultsComponent from "@/components/ResultsComponent";
 
 /* import { data } from "@/lib/data"; */
 // Lazy load the iframe component
@@ -19,7 +19,7 @@ const Page = () => {
             <Heading>The War Within</Heading>
           </div>
 
-          {/* <ResultsComponent data={data} /> */}
+          <ResultsComponent data={data} />
           <div className="flex items-center justify-center h-20">
             <div className="flex items-center space-x-2">
               <span>Vi tar tempen</span>
