@@ -9,7 +9,7 @@ export function useGetResponses() {
   console.log("#####URL :", csvUrl);
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<any | null>(null);
 
   const fetchResponses = useCallback(async () => {
     setLoading(true);
@@ -43,7 +43,7 @@ export function useGetResponses() {
       setData(parsedData.data);
     } catch (err: any) {
       console.error("Error fetching CSV data:", err);
-      setError(err as Error); // Type assertion here
+      setError(err as any); // Type assertion here
     } finally {
       setLoading(false);
     }
