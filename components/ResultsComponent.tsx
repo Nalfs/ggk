@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
-
+import Image from "next/image";
 import DPSIcon from "@/public/images/role/dps.jpg";
 import HealerIcon from "@/public/images/role/healer.jpg";
 import TankIcon from "@/public/images/role/tank.jpg";
@@ -41,12 +41,13 @@ const ResultsComponent = ({ data }: any) => {
           <p>{totalResponses}</p>
         </CardContent>
       </Card>
+
       {rolePercentages.map(({ role, count, percentage }) => (
         <Card key={role}>
           <CardHeader className="flex-row justify-between">
             <CardTitle>{role}</CardTitle>
             {roleIcons[role] && (
-              <img src={roleIcons[role]} alt={role} className="w-8 h-8" />
+              <Image src={roleIcons[role]} alt={role} width={32} height={32} />
             )}
           </CardHeader>
           <CardContent>
