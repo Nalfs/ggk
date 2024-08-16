@@ -65,7 +65,6 @@ const Page = () => {
               marginTop: "20px",
               maxWidth: "100%",
               height: "100vh",
-              overflow: "hidden",
             }}
           >
             <Suspense
