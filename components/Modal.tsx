@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogTrigger,
@@ -21,7 +22,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
     <Dialog open={true} onOpenChange={onClose}>
       <DialogOverlay className="fixed inset-0 bg-black bg-opacity-50" />
 
-      <DialogContent>
+      <DialogContent className="max-h-[90vh] p-4 overflow-y-auto">
         <DialogTitle className="text-lg font-semibold mb-4">
           Raid Composition
         </DialogTitle>
@@ -30,12 +31,9 @@ const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
 
         {/* Close button */}
         <div className="mt-4 text-right">
-          <button
-            onClick={onClose}
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
+          <Button onClick={onClose} className="text-white px-4 py-2 rounded">
             Close
-          </button>
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
