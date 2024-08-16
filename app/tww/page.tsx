@@ -1,16 +1,28 @@
 "use client";
-import React, { Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import Heading from "@/components/Heading";
 import { useGetResponses } from "@/lib/responses";
 import ResultsComponent from "@/components/ResultsComponent";
 import ClassSummaryComponent from "@/components/ClassSummaryComponent";
-/* import { data } from "@/lib/data"; */
+import Modal from "@/components/Modal"; // Import the Modal component
+
 // Lazy load the iframe component
 const LazyIframe = React.lazy(() => import("../../components/LazyIframe"));
 
 const Page = () => {
   const { data, loading, error } = useGetResponses();
-  console.log("data", data);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Function to open the modal
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div className="container mx-auto py-10">
@@ -18,9 +30,16 @@ const Page = () => {
           <div>
             <Heading>The War Within</Heading>
           </div>
-
           <ResultsComponent data={data} />
-          <ClassSummaryComponent data={data} />
+
+          {/* Trigger to open the modal */}
+          <div className="my-10 cursor-pointer" onClick={handleOpenModal}>
+            <strong>Check raid comp</strong>
+          </div>
+
+          {/* Modal with ClassSummaryComponent */}
+          {isModalOpen && <Modal data={data} onClose={handleCloseModal} />}
+
           <div className="flex items-center justify-center h-20">
             <div className="flex items-center space-x-2">
               <span>Vi tar tempen</span>
@@ -41,7 +60,6 @@ const Page = () => {
               </svg>
             </div>
           </div>
-
           <div
             style={{
               marginTop: "20px",
