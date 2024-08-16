@@ -9,8 +9,6 @@ import ResultsComponent from "@/components/ResultsComponent";
 const LazyIframe = React.lazy(() => import("../../components/LazyIframe"));
 
 const Page = () => {
-  const csvUrl = process.env.CSV_URL || "";
-  console.log("csvUrl", csvUrl);
   const { data, loading, error } = useGetResponses();
   console.log("page data: ", data);
   return (
