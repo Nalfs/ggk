@@ -1,4 +1,3 @@
-"use client";
 import { useState, useCallback, useEffect } from "react";
 import Papa from "papaparse";
 
@@ -6,7 +5,9 @@ import Papa from "papaparse";
  * Hook for fetching and parsing CSV data.
  */
 export function useGetResponses() {
-  const csvUrl = process.env.NEXT_PUBLIC_CSV_URL;
+  /*   const csvUrl = process.env.NEXT_PUBLIC_CSV_URL; */
+  const csvUrl =
+    "https://docs.google.com/spreadsheets/d/1ui61Et-iq2D4uNeioAkdYgZM9uRqJu05MgiNYLgqft0/pub?gid=108652390&single=true&output=csv";
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
