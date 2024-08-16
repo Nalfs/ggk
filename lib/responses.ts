@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import Papa from "papaparse";
+
 /**
  * Hook for generating csv responses.
  */
@@ -42,7 +43,7 @@ export function useGetResponses() {
       setData(parsedData.data);
     } catch (err) {
       console.error("Error fetching CSV data:", err);
-      setError(err);
+      setError(err as Error); // Type assertion here
     } finally {
       setLoading(false);
     }

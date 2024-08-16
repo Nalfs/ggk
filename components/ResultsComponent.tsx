@@ -2,9 +2,16 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
 
+import DPSIcon from "@/public/images/role/dps.jpg";
+import HealerIcon from "@/public/images/role/healer.jpg";
+import TankIcon from "@/public/images/role/tank.jpg";
+
 const ResultsComponent = ({ data }: any) => {
-  /*   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading data</p>; */
+  const roleIcons: { [key: string]: string } = {
+    DPS: DPSIcon.src,
+    Healer: HealerIcon.src,
+    Tank: TankIcon.src,
+  };
 
   const roleCounts = Array.isArray(data)
     ? data.reduce((acc, row) => {
@@ -18,14 +25,13 @@ const ResultsComponent = ({ data }: any) => {
 
   // Calculate role percentages
   const totalResponses = data.length;
-  console.log("resres", totalResponses);
   const rolePercentages = Object.keys(roleCounts).map((role) => ({
     role,
     count: roleCounts[role],
     percentage: ((roleCounts[role] / totalResponses) * 100).toFixed(2),
   }));
 
-  /*   return (
+  return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <Card>
         <CardHeader>
@@ -37,8 +43,11 @@ const ResultsComponent = ({ data }: any) => {
       </Card>
       {rolePercentages.map(({ role, count, percentage }) => (
         <Card key={role}>
-          <CardHeader>
+          <CardHeader className="flex-row justify-between">
             <CardTitle>{role}</CardTitle>
+            {roleIcons[role] && (
+              <img src={roleIcons[role]} alt={role} className="w-8 h-8" />
+            )}
           </CardHeader>
           <CardContent>
             <p>
@@ -48,39 +57,6 @@ const ResultsComponent = ({ data }: any) => {
           </CardContent>
         </Card>
       ))}
-    </div>
-  );
-}; */
-  return (
-    <div className="flex flex-col space-y-4">
-      {/* Total Responses */}
-      <div>
-        <Card>
-          <CardHeader>
-            <CardTitle>Total Responses</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>{totalResponses}</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Role Distribution */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {rolePercentages.map(({ role, count, percentage }) => (
-          <Card key={role}>
-            <CardHeader>
-              <CardTitle>{role}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>
-                {count} ({percentage}%)
-              </p>
-              <Progress value={parseFloat(percentage)} />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
     </div>
   );
 };
