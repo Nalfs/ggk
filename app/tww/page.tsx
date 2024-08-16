@@ -1,11 +1,18 @@
+"use client";
 import React, { Suspense } from "react";
 import Heading from "@/components/Heading";
+import { useGetResponses } from "@/lib/responses";
+import ResultsComponent from "@/components/ResultsComponent";
 // import { Skeleton } from "@/components/ui/skeleton";
 
 // Lazy load the iframe component
 const LazyIframe = React.lazy(() => import("../../components/LazyIframe"));
 
-const page = () => {
+const Page = () => {
+  const csvUrl = process.env.CSV_URL || "";
+  console.log("csvUrl", csvUrl);
+  const { data, loading, error } = useGetResponses();
+  console.log("page data: ", data);
   return (
     <>
       <div className="container mx-auto py-10">
@@ -31,8 +38,11 @@ const page = () => {
               />
             </svg>
           </p>
+          <p>Se resultat</p>
+          <ResultsComponent data={data} />
           <div
             style={{
+              marginTop: "20px",
               maxWidth: "100%",
               height: "100vh",
               overflow: "hidden",
@@ -61,7 +71,7 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
 
 // "use client";
 // import React, { useState, useEffect, Suspense } from "react";
