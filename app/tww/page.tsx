@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import Heading from "@/components/Heading";
 import { useGetResponses } from "@/lib/responses";
 import ResultsComponent from "@/components/ResultsComponent";
-
+import ClassSummaryComponent from "@/components/ClassSummaryComponent";
 /* import { data } from "@/lib/data"; */
 // Lazy load the iframe component
 const LazyIframe = React.lazy(() => import("../../components/LazyIframe"));
@@ -20,6 +20,7 @@ const Page = () => {
           </div>
 
           <ResultsComponent data={data} />
+          <ClassSummaryComponent data={data} />
           <div className="flex items-center justify-center h-20">
             <div className="flex items-center space-x-2">
               <span>Vi tar tempen</span>
