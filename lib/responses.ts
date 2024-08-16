@@ -41,7 +41,7 @@ export function useGetResponses() {
       const parsedData = Papa.parse(csv, { header: true });
       console.log("Parsed Data:", parsedData.data);
       setData(parsedData.data);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error fetching CSV data:", err);
       setError(err as Error); // Type assertion here
     } finally {
