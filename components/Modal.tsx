@@ -9,9 +9,12 @@ import {
   DialogDescription,
 } from "./ui/dialog"; // Adjust the import path according to your setup
 import ClassSummaryComponent from "@/components/ClassSummaryComponent";
+import "./styles.css"; // Make sure this path is correct
+
 type DataEntry = {
   "Vilken klass vill du main:a?": string;
 };
+
 type ModalProps = {
   data: DataEntry[];
   onClose: () => void; // Function to close the modal
@@ -22,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
     <Dialog open={true} onOpenChange={onClose}>
       <DialogOverlay className="fixed inset-0 bg-black bg-opacity-50" />
 
-      <DialogContent className="max-h-[90vh] p-4 overflow-y-auto">
+      <DialogContent className="max-h-[90vh] p-4 overflow-y-auto hide-scrollbar">
         <DialogTitle className="text-lg font-semibold mb-4">
           Raid Composition
         </DialogTitle>
