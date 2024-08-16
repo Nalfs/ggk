@@ -20,6 +20,8 @@ const Page = () => {
           <div>
             <Heading>The War Within</Heading>
           </div>
+
+          <ResultsComponent data={data} />
           <p className="flex items-center space-x-2">
             <span>Vi tar tempen</span>
             <svg
@@ -38,8 +40,6 @@ const Page = () => {
               />
             </svg>
           </p>
-          <p>Se resultat</p>
-          <ResultsComponent data={data} />
           <div
             style={{
               marginTop: "20px",
