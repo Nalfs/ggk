@@ -33,7 +33,7 @@ export default function AboutPage() {
           <li>Nyalotha: 12/12 HC</li>
           <li>Castle Nathria: 4/10 Mythic</li>
           <li>SoD: 10/10 HC</li>
-          <li>Sepulcher: 10/11</li>
+          <li>Sepulcher: 10/10 HC</li>
           <li> Voti: 2/8 Mythic</li>
           <li>Abberus: 9/9 HC</li>
           <li>Amirdrassil: 9/9 HC</li>
