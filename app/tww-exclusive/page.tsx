@@ -14,10 +14,53 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 
 const page = () => {
   return (
     <div className="container mx-auto py-10">
+      <div className="space-y-8 px-4">
+        <ul>
+          <li>
+            {" "}
+            <Link
+              href={
+                "https://docs.google.com/spreadsheets/d/1xlsweYp1Jz086WRskFAj8dmiXFXIgsxR8wThHxAUYSc/edit?gid=1272551205#gid=1272551205"
+              }
+            >
+              Beta Raid Test DPS Logs
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link
+              href={
+                "https://docs.google.com/spreadsheets/d/1UgawxPKreuGbgiCaAUfCZePbkB6q0wzQY93pgtW-XNU/edit?gid=882519646#gid=882519646"
+              }
+            >
+              Beta Raid Test HPS Logs
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={
+                "https://docs.google.com/spreadsheets/d/14Us4SYeq2fr3sG-iv1ADOORaO5NZqXFhQdt7UJzpfro/edit?gid=0#gid=0"
+              }
+            >
+              Temporary Patchwerk Sims
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={
+                "https://docs.google.com/spreadsheets/d/1Hwx5xHyK0bYl3d2tjjYqd3dyC7wfyV3wDifCaz5rpqY/edit?gid=0#gid=0#"
+              }
+            >
+              Petko M+ - Choose your main
+            </Link>
+          </li>
+        </ul>
+      </div>
       <div className="space-y-8 px-4">
         <Card>
           <CardHeader>
