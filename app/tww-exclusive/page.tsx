@@ -35,7 +35,7 @@ const page = () => {
           </li>
           <li className="relative bg-[#FF6600] text-white font-bold py-2 pl-4 pr-10 w-full sm:w-2/3 md:w-1/2 lg:w-1/3 rounded-r-full">
             <Link href="https://docs.google.com/spreadsheets/d/1Hwx5xHyK0bYl3d2tjjYqd3dyC7wfyV3wDifCaz5rpqY/edit?gid=0#gid=0#">
-              Petko M+ - Choose your main
+              Petkos M+ Spreadsheet
             </Link>
             <div className="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-t-transparent border-b-[20px] border-b-transparent border-l-[20px] border-l-[#FF6600]"></div>
           </li>
