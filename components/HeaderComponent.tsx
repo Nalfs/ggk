@@ -48,6 +48,14 @@ const HeaderComponent = () => {
               TWW
             </Link>
           </li>
+          <li>
+            <Link
+              href="/tww-exclusive"
+              className="text-white no-underline hover:underline"
+            >
+              TWW Exclusive
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
