@@ -49,12 +49,35 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     }
 
     timerComponents.push(
-      <span key={interval}>
-        <span style={{ color: "#FF6600", fontSize: "2rem" }}>
+      <div
+        key={interval}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginRight: "10px",
+        }}
+      >
+        <span
+          style={{
+            color: "#FF6600",
+            fontSize: "2rem",
+            lineHeight: "1.2",
+            textAlign: "center",
+          }}
+        >
           {timeLeft[key]}
-        </span>{" "}
-        <span style={{ fontSize: "1rem" }}>{interval.toUpperCase()}</span>{" "}
-      </span>
+        </span>
+        <span
+          style={{
+            fontSize: "1rem",
+            textAlign: "center",
+            color: "#FFFFFF",
+          }}
+        >
+          {interval.toUpperCase()}
+        </span>
+      </div>
     );
   });
 
@@ -62,16 +85,33 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
         fontFamily: "Arial, sans-serif",
+        padding: "10px",
       }}
     >
       <span
-        style={{ marginRight: "10px", color: "#FFFFFF", fontSize: "1.5rem" }}
+        style={{
+          marginBottom: "10px",
+          color: "#FFFFFF",
+          fontSize: "1.5rem",
+          textAlign: "center",
+        }}
       >
         TWW Early Access
       </span>
-      {timerComponents.length ? timerComponents : <span>Time´s up!</span>}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        {timerComponents.length ? timerComponents : <span>Times up!</span>}
+      </div>
     </div>
   );
 };
