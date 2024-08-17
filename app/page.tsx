@@ -21,7 +21,7 @@ export default async function Home() {
           <Card>
             <CardHeader>
               <CardTitle>
-                <Badge className="mr-2 relative -top-0.5 text-white-400">
+                <Badge className="mr-2 relative -top-1 text-white-400">
                   8/22
                 </Badge>
                 The War Within Early Access begins
@@ -32,7 +32,7 @@ export default async function Home() {
           <Card>
             <CardHeader>
               <CardTitle>
-                <Badge className="mr-2 relative -top-0.5 text-white-400">
+                <Badge className="mr-2 relative -top-1 text-white-400">
                   8/26
                 </Badge>
                 The War Within Goes Live Globally at 3:00 pm PDT
@@ -46,7 +46,7 @@ export default async function Home() {
           <Card>
             <CardHeader>
               <CardTitle>
-                <Badge className="mr-2 relative -top-0.5 text-white-400">
+                <Badge className="mr-2 relative -top-1 text-white-400">
                   9/10
                 </Badge>
                 The War Within Season 1 Begins
@@ -60,7 +60,7 @@ export default async function Home() {
           <Card>
             <CardHeader>
               <CardTitle>
-                <Badge className="mr-2 relative -top-0.5 text-white-400">
+                <Badge className="mr-2 relative -top-1 text-white-400">
                   9/17
                 </Badge>
                 Mythic raids and Mythic+ dungeons open
@@ -73,7 +73,7 @@ export default async function Home() {
           <Card>
             <CardHeader>
               <CardTitle>
-                <Badge className="mr-2 relative -top-0.5 text-white-400">
+                <Badge className="mr-2 relative -top-1 text-white-400">
                   9/24
                 </Badge>
                 Raid Finder Wing 3 Opens
