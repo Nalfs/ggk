@@ -53,7 +53,7 @@ const HeaderComponent = () => {
               href="/tww-exclusive"
               className="text-white no-underline hover:underline"
             >
-              TWW Exclusive
+              Exclusive
             </Link>
           </li>
         </ul>
