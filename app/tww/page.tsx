@@ -4,21 +4,18 @@ import Heading from "@/components/Heading";
 import { useGetResponses } from "@/lib/responses";
 import ResultsComponent from "@/components/ResultsComponent";
 import ClassSummaryComponent from "@/components/ClassSummaryComponent";
-import Modal from "@/components/Modal"; // Import the Modal component
+import Modal from "@/components/Modal";
 
-// Lazy load the iframe component
 const LazyIframe = React.lazy(() => import("../../components/LazyIframe"));
 
 const Page = () => {
   const { data, loading, error } = useGetResponses();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to open the modal
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  // Function to close the modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };

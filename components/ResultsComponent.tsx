@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-/* import { Progress } from "./ui/progress"; */
 import Image from "next/image";
 import DPSIcon from "@/public/images/role/dps.jpg";
 import HealerIcon from "@/public/images/role/healer.jpg";
@@ -55,7 +54,6 @@ const ResultsComponent = ({ data }: any) => {
             <p>
               {count} ({percentage}%)
             </p>
-            {/*  <Progress value={95} /> */}
             <ProgressComponent value={parseFloat(percentage)} />
           </CardContent>
         </Card>
