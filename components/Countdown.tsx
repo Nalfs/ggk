@@ -40,6 +40,24 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  const timerComponents: JSX.Element[] = [];
+
+  Object.keys(timeLeft).forEach((interval) => {
+    const key = interval as keyof TimeLeft;
+    if (!timeLeft[key]) {
+      return;
+    }
+
+    timerComponents.push(
+      <span key={interval}>
+        <span style={{ color: "#FF6600", fontSize: "2rem" }}>
+          {timeLeft[key]}
+        </span>{" "}
+        <span style={{ fontSize: "1rem" }}>{interval.toUpperCase()}</span>{" "}
+      </span>
+    );
+  });
+
   return (
     <div
       style={{
@@ -53,10 +71,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
       >
         TWW Early Access
       </span>
-      <span style={{ color: "#FF6600", fontSize: "2rem" }}>
-        {timeLeft.days} DAYS {timeLeft.hours} HOURS {timeLeft.minutes} MINUTES{" "}
-        {timeLeft.seconds} SECONDS
-      </span>
+      {timerComponents.length ? timerComponents : <span>Time´s up!</span>}
     </div>
   );
 };
