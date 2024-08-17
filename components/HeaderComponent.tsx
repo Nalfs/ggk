@@ -26,6 +26,14 @@ const HeaderComponent = () => {
           </li>
           <li>
             <Link
+              href="/about"
+              className="text-white no-underline hover:underline"
+            >
+              Om
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/logs"
               className="text-white no-underline hover:underline"
             >
