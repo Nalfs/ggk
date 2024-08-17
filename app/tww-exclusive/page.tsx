@@ -19,48 +19,35 @@ import Link from "next/link";
 const page = () => {
   return (
     <div className="container mx-auto py-10">
-      <div className="space-y-8 px-4">
-        <ul>
-          <li>
-            {" "}
-            <Link
-              href={
-                "https://docs.google.com/spreadsheets/d/1xlsweYp1Jz086WRskFAj8dmiXFXIgsxR8wThHxAUYSc/edit?gid=1272551205#gid=1272551205"
-              }
-            >
+      <div className="space-y-8 px-4 my-5">
+        <ul className="space-y-4">
+          <li className="relative bg-[#FF6600] text-white font-bold py-2 pl-4 pr-10 w-1/3 rounded-r-full">
+            <Link href="https://docs.google.com/spreadsheets/d/1xlsweYp1Jz086WRskFAj8dmiXFXIgsxR8wThHxAUYSc/edit?gid=1272551205#gid=1272551205">
               Beta Raid Test DPS Logs
             </Link>
+            <div className="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-t-transparent border-b-[20px] border-b-transparent border-l-[20px] border-l-[#FF6600]"></div>
           </li>
-          <li>
-            {" "}
-            <Link
-              href={
-                "https://docs.google.com/spreadsheets/d/1UgawxPKreuGbgiCaAUfCZePbkB6q0wzQY93pgtW-XNU/edit?gid=882519646#gid=882519646"
-              }
-            >
+          <li className="relative bg-[#FF6600] text-white font-bold py-2 pl-4 pr-10 w-1/3 rounded-r-full">
+            <Link href="https://docs.google.com/spreadsheets/d/1UgawxPKreuGbgiCaAUfCZePbkB6q0wzQY93pgtW-XNU/edit?gid=882519646#gid=882519646">
               Beta Raid Test HPS Logs
             </Link>
+            <div className="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-t-transparent border-b-[20px] border-b-transparent border-l-[20px] border-l-[#FF6600]"></div>
           </li>
-          <li>
-            <Link
-              href={
-                "https://docs.google.com/spreadsheets/d/14Us4SYeq2fr3sG-iv1ADOORaO5NZqXFhQdt7UJzpfro/edit?gid=0#gid=0"
-              }
-            >
+          <li className="relative bg-[#FF6600] text-white font-bold py-2 pl-4 pr-10 w-1/3 rounded-r-full">
+            <Link href="https://docs.google.com/spreadsheets/d/14Us4SYeq2fr3sG-iv1ADOORaO5NZqXFhQdt7UJzpfro/edit?gid=0#gid=0">
               Temporary Patchwerk Sims
             </Link>
+            <div className="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-t-transparent border-b-[20px] border-b-transparent border-l-[20px] border-l-[#FF6600]"></div>
           </li>
-          <li>
-            <Link
-              href={
-                "https://docs.google.com/spreadsheets/d/1Hwx5xHyK0bYl3d2tjjYqd3dyC7wfyV3wDifCaz5rpqY/edit?gid=0#gid=0#"
-              }
-            >
+          <li className="relative bg-[#FF6600] text-white font-bold py-2 pl-4 pr-10 w-1/3 rounded-r-full">
+            <Link href="https://docs.google.com/spreadsheets/d/1Hwx5xHyK0bYl3d2tjjYqd3dyC7wfyV3wDifCaz5rpqY/edit?gid=0#gid=0#">
               Petko M+ - Choose your main
             </Link>
+            <div className="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-t-transparent border-b-[20px] border-b-transparent border-l-[20px] border-l-[#FF6600]"></div>
           </li>
         </ul>
       </div>
+
       <div className="space-y-8 px-4">
         <Card>
           <CardHeader>
