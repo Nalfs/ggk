@@ -31,7 +31,6 @@ export type Log = {
 export const columns: ColumnDef<Log>[] = [
   {
     accessorKey: "id",
-    // header: "ID",
     cell: ({ row }) => {
       const log = row.original;
       return <Link href={`/logs/${log.id}`}>{log.id} </Link>;
@@ -68,38 +67,22 @@ export const columns: ColumnDef<Log>[] = [
   },
   {
     accessorKey: "start",
-    // header: ({ column }) => {
-    //   return (
-    //     <Button
-    //       variant="ghost"
-    //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    //     >
-    //       Start
-    //       <ArrowUpDown className="ml-2 h-4 w-4" />
-    //     </Button>
-    //   );
-    // },
     header: "Start",
+    cell: ({ row }) => {
+      return <span>{row.original.start}</span>;
+    },
   },
   {
     accessorKey: "end",
-    // header: ({ column }) => {
-    //   return (
-    //     <Button
-    //       variant="ghost"
-    //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    //     >
-    //       End
-    //       <ArrowUpDown className="ml-2 h-4 w-4" />
-    //     </Button>
-    //   );
-    // },
     header: "End",
+    cell: ({ row }) => {
+      return <span>{row.original.end}</span>;
+    },
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const log = row.original;
 
       return (
         <DropdownMenu>
@@ -112,7 +95,7 @@ export const columns: ColumnDef<Log>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(log.id)}
             >
               Copy Log ID
             </DropdownMenuItem>

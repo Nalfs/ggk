@@ -18,24 +18,107 @@ async function fetchMembers() {
   return response;
 }
 
+// export async function getGuildLog(param: string) {
+//   const apiKey = process.env.CLIENT_KEY;
+//   //console.log("[param]", param);
+//   const url = `https://www.warcraftlogs.com/v1/report/fights/${param}?api_key=${apiKey}`;
+//   //console.log("[url]", url);
+
+//   try {
+//     const response = await fetch(url);
+
+//     if (!response.ok) {
+//       throw new Error(`WCL returned ${response.status} for ${url}`);
+//     }
+
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching logs:", error);
+
+//     return { error: "Failed to fetch data" };
+//   }
+// }
 export async function getGuildLog(param: string) {
-  const apiKey = process.env.CLIENT_KEY;
-  //console.log("[param]", param);
-  const url = `https://www.warcraftlogs.com/v1/report/fights/${param}?api_key=${apiKey}`;
-  //console.log("[url]", url);
+  const clientId = process.env.CLIENT_ID;
+  const clientSecret = process.env.CLIENT_SECRET;
+
+  const tokenUrl = "https://www.warcraftlogs.com/oauth/token";
+  const apiUrl = "https://www.warcraftlogs.com/api/v2/client";
 
   try {
-    const response = await fetch(url);
+    // Obtain an access token
+    const tokenResponse = await fetch(tokenUrl, {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Basic " +
+          Buffer.from(`${clientId}:${clientSecret}`).toString("base64"),
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "grant_type=client_credentials",
+    });
+
+    if (!tokenResponse.ok) {
+      throw new Error("Failed to retrieve access token");
+    }
+
+    const tokenData = await tokenResponse.json();
+    const accessToken = tokenData.access_token;
+
+    // Use the access token to query the API
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+          query {
+            reportData {
+              report(code: "${param}") {
+                fights {
+                  id
+                  name
+                  startTime
+                  endTime
+                  bossPercentage
+                  fightPercentage
+                  kill
+                  encounterID
+                }
+                masterData {
+                  actors(type: "Player") {
+                    id
+                    name
+                    subType  # Represents the class of the player
+                  }
+                }
+                startTime
+                endTime
+              }
+            }
+          }
+        `,
+      }),
+    });
 
     if (!response.ok) {
-      throw new Error(`WCL returned ${response.status} for ${url}`);
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
 
     const data = await response.json();
-    return data;
+    console.log("get log data getGuildLog", data);
+
+    if (data.errors) {
+      console.error("GraphQL errors:", data.errors);
+      return { error: data.errors.map((err: any) => err.message).join(", ") };
+    }
+
+    return data.data.reportData.report;
   } catch (error) {
     console.error("Error fetching logs:", error);
-
     return { error: "Failed to fetch data" };
   }
 }
@@ -98,7 +181,13 @@ export interface FormattedKill {
   duration: string;
 }
 
-export const showKills = (bossData: BossData[]): FormattedKill[] => {
+export const showKills = (bossData: BossData[] = []): FormattedKill[] => {
+  // If bossData is not an array, return an empty array
+  if (!Array.isArray(bossData)) {
+    console.error("Expected bossData to be an array, but received:", bossData);
+    return [];
+  }
+
   // Filter for objects where kill is true
   const killObjects = bossData.filter((boss) => boss.kill);
 

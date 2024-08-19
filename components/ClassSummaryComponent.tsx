@@ -32,10 +32,16 @@ const processData = (data: DataEntry[]): ClassCounts => {
     normalizedWowClasses[className] = key;
   });
 
+  // Ensure data is an array
+  if (!Array.isArray(data)) {
+    console.error("Expected data to be an array, but received:", data);
+    return classCounts;
+  }
+
   data.forEach((entry) => {
     // Extract the class name from the entry and normalize it
     const rawClassName = entry["Vilken klass vill du main:a?"]
-      .split(",")[0]
+      ?.split(",")[0]
       .trim()
       .toLowerCase();
 
@@ -75,7 +81,7 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {(Object.keys(classCounts) as Array<keyof typeof wowClasses>).map(
+          {(Object.keys(classCounts) as Array<keyof WowClasses>).map(
             (classKey) => {
               const wowClass = wowClasses[classKey];
               return (
