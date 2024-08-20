@@ -78,6 +78,10 @@ export async function getGuildLog(param: string) {
           query {
             reportData {
               report(code: "${param}") {
+                code
+                title
+                startTime
+                endTime
                 fights {
                   id
                   name
@@ -87,16 +91,8 @@ export async function getGuildLog(param: string) {
                   fightPercentage
                   kill
                   encounterID
+                  difficulty
                 }
-                masterData {
-                  actors(type: "Player") {
-                    id
-                    name
-                    subType  # Represents the class of the player
-                  }
-                }
-                startTime
-                endTime
               }
             }
           }
@@ -109,7 +105,6 @@ export async function getGuildLog(param: string) {
     }
 
     const data = await response.json();
-    console.log("get log data getGuildLog", data);
 
     if (data.errors) {
       console.error("GraphQL errors:", data.errors);
@@ -182,6 +177,7 @@ export interface FormattedKill {
 }
 
 export const showKills = (bossData: BossData[] = []): FormattedKill[] => {
+  console.log("#### BOSS DATA", bossData);
   // If bossData is not an array, return an empty array
   if (!Array.isArray(bossData)) {
     console.error("Expected bossData to be an array, but received:", bossData);

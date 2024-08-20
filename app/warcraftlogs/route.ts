@@ -63,8 +63,8 @@ export async function POST(req: Request) {
     }
 
     const responseData = await apiResponse.json();
-    console.log("#####responseData", responseData);
-    console.dir(responseData, { depth: null });
+    // console.log("#####responseData", responseData);
+    // console.dir(responseData, { depth: null });
     return NextResponse.json(responseData);
   } catch (error: any) {
     console.error(error);

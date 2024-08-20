@@ -43,7 +43,6 @@ export const useWarcraftLogs = () => {
         }
 
         const result = await response.json();
-        console.log("#####result", result);
 
         // Correctly accessing the reports data
         const reports = result?.data?.reportData?.reports?.data;

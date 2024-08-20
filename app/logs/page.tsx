@@ -25,7 +25,6 @@ export default function LogsPage() {
   // );
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  console.log("data", data);
   return (
     <>
       <div className="container mx-auto py-10">

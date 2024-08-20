@@ -71,7 +71,6 @@ export default async function LogPage({
   params: { slug: string };
 }) {
   const log = await getGuildLog(slug);
-  console.log("###getGuildLog:: ", log);
 
   // Pass the fetched data as props to the client component
   return <ClientLogPage initialLog={log} />;

@@ -2,6 +2,9 @@ import React from "react";
 import { Table, TableHeader, TableBody, TableRow, TableCell } from "./ui/table"; // Adjust the import paths according to your structure
 import { wowClasses } from "@/lib/utils";
 import Image from "next/image";
+import DPSIcon from "@/public/images/role/dps.jpg";
+import HealerIcon from "@/public/images/role/healer.jpg";
+import TankIcon from "@/public/images/role/tank.jpg";
 
 type WowClass = {
   name: string;
@@ -14,12 +17,22 @@ type WowClasses = {
   [key: string]: WowClass;
 };
 
+type Role = "Tank" | "DPS" | "Healer" | "Support"; // Added "Support" as a role
+
 type DataEntry = {
   "Vilken klass vill du main:a?": string;
+  "Vilken roll vill du spela nästa tier/säsong?": string;
 };
 
 type ClassCounts = {
-  [key: string]: number;
+  [key: string]: {
+    count: number;
+    roles: {
+      Tank: boolean;
+      DPS: boolean;
+      Healer: boolean;
+    };
+  };
 };
 
 const processData = (data: DataEntry[]): ClassCounts => {
@@ -54,8 +67,28 @@ const processData = (data: DataEntry[]): ClassCounts => {
     // Check if the normalized class name exists in the wowClasses object
     if (normalizedWowClasses[className]) {
       const originalClassName = normalizedWowClasses[className];
-      classCounts[originalClassName] =
-        (classCounts[originalClassName] || 0) + 1;
+      if (!classCounts[originalClassName]) {
+        classCounts[originalClassName] = {
+          count: 0,
+          roles: {
+            Tank: false,
+            DPS: false,
+            Healer: false,
+          },
+        };
+      }
+      classCounts[originalClassName].count += 1;
+
+      let role = entry["Vilken roll vill du spela nästa tier/säsong?"] as Role;
+
+      // Treat "Support" as "DPS"
+      if (role === "Support") {
+        role = "DPS";
+      }
+
+      if (role in classCounts[originalClassName].roles) {
+        classCounts[originalClassName].roles[role] = true;
+      }
     }
   });
 
@@ -65,11 +98,11 @@ const processData = (data: DataEntry[]): ClassCounts => {
 const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
   const classCounts = processData(data);
 
-  // Calculate the total number of players across all classes
-  const totalCounts = Object.values(classCounts).reduce(
-    (sum, count) => sum + count,
-    0
-  );
+  const roleIcons: { [key: string]: string } = {
+    DPS: DPSIcon.src,
+    Healer: HealerIcon.src,
+    Tank: TankIcon.src,
+  };
 
   return (
     <div>
@@ -77,13 +110,18 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
         <TableHeader>
           <TableRow>
             <TableCell>Class</TableCell>
-            <TableCell>Count</TableCell>
+            <TableCell className="text-center">Tank</TableCell>
+            <TableCell className="text-center">DPS</TableCell>
+            <TableCell className="text-center">Healer</TableCell>
+            <TableCell className="text-center">Count</TableCell>
           </TableRow>
         </TableHeader>
         <TableBody>
           {(Object.keys(classCounts) as Array<keyof typeof wowClasses>).map(
             (classKey) => {
               const wowClass = wowClasses[classKey];
+              const roles = classCounts[classKey].roles;
+
               return (
                 <TableRow key={classKey}>
                   <TableCell style={{ color: wowClass.color }}>
@@ -98,7 +136,39 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
                       />
                     </div>
                   </TableCell>
-                  <TableCell>{classCounts[classKey]}</TableCell>
+                  <TableCell className="text-center">
+                    {roles.Tank && (
+                      <Image
+                        src={roleIcons.Tank}
+                        alt="Tank"
+                        width={24}
+                        height={24}
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {roles.DPS && (
+                      <Image
+                        src={roleIcons.DPS}
+                        alt="DPS"
+                        width={24}
+                        height={24}
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {roles.Healer && (
+                      <Image
+                        src={roleIcons.Healer}
+                        alt="Healer"
+                        width={24}
+                        height={24}
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {classCounts[classKey].count}
+                  </TableCell>
                 </TableRow>
               );
             }
@@ -108,7 +178,8 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
 
       {/* Summary Section */}
       <div className="mt-4">
-        <strong>Total Players: </strong> {totalCounts}
+        <strong>Total Players: </strong>{" "}
+        {Object.values(classCounts).reduce((sum, cls) => sum + cls.count, 0)}
       </div>
     </div>
   );

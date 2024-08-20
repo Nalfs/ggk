@@ -40,30 +40,36 @@ export const columns: ColumnDef<Log>[] = [
     accessorKey: "title",
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Title
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="text-center">
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Title
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
       );
     },
+    cell: ({ row }) => <div className="text-center">{row.original.title}</div>,
   },
   {
     accessorKey: "owner",
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          className="px-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Owner
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="text-center">
+          <Button
+            variant="ghost"
+            className="px-1"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Owner
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
       );
     },
+    cell: ({ row }) => <div className="text-center">{row.original.owner}</div>,
   },
   {
     accessorKey: "start",
