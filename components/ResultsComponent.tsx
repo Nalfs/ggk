@@ -3,7 +3,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Image from "next/image";
 import DPSIcon from "@/public/images/role/dps.jpg";
-import HealerIcon from "@/public/images/role/healer.jpg";
+import HealerIcon from "@/public/images/role/healer2.jpg";
 import TankIcon from "@/public/images/role/tank.jpg";
 import ProgressComponent from "./ProgressComponent";
 

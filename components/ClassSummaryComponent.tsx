@@ -3,7 +3,7 @@ import { Table, TableHeader, TableBody, TableRow, TableCell } from "./ui/table";
 import { wowClasses } from "@/lib/utils";
 import Image from "next/image";
 import DPSIcon from "@/public/images/role/dps.jpg";
-import HealerIcon from "@/public/images/role/healer.jpg";
+import HealerIcon from "@/public/images/role/healer2.jpg";
 import TankIcon from "@/public/images/role/tank.jpg";
 
 type WowClass = {
