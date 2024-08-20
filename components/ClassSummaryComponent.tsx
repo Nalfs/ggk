@@ -136,34 +136,40 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
                       />
                     </div>
                   </TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="text-center align-middle">
                     {roles.Tank && (
-                      <Image
-                        src={roleIcons.Tank}
-                        alt="Tank"
-                        width={24}
-                        height={24}
-                      />
+                      <div className="flex justify-center items-center h-full">
+                        <Image
+                          src={roleIcons.Tank}
+                          alt="Tank"
+                          width={24}
+                          height={24}
+                        />
+                      </div>
                     )}
                   </TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="text-center align-middle">
                     {roles.DPS && (
-                      <Image
-                        src={roleIcons.DPS}
-                        alt="DPS"
-                        width={24}
-                        height={24}
-                      />
+                      <div className="flex justify-center items-center h-full">
+                        <Image
+                          src={roleIcons.DPS}
+                          alt="DPS"
+                          width={24}
+                          height={24}
+                        />
+                      </div>
                     )}
                   </TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="text-center align-middle">
                     {roles.Healer && (
-                      <Image
-                        src={roleIcons.Healer}
-                        alt="Healer"
-                        width={24}
-                        height={24}
-                      />
+                      <div className="flex justify-center items-center h-full">
+                        <Image
+                          src={roleIcons.Healer}
+                          alt="Healer"
+                          width={24}
+                          height={24}
+                        />
+                      </div>
                     )}
                   </TableCell>
                   <TableCell className="text-center">
