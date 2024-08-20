@@ -13,6 +13,7 @@ import "./styles.css"; // Make sure this path is correct
 
 type DataEntry = {
   "Vilken klass vill du main:a?": string;
+  "Vilken roll vill du spela nästa tier/säsong?": string;
 };
 
 type ModalProps = {
