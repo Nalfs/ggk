@@ -81,7 +81,7 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {(Object.keys(classCounts) as Array<keyof WowClasses>).map(
+          {(Object.keys(classCounts) as Array<keyof typeof wowClasses>).map(
             (classKey) => {
               const wowClass = wowClasses[classKey];
               return (
