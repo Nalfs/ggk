@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Heading from "@/components/Heading";
 import ShareLinkButton from "@/components/ShareLinkButton";
 import { formatTime } from "@/lib/utils";
-import ClassSummaryTable from "@/components/ClassSummaryComponent";
-import BossKillDetails from "@/components/BossKillComponent";
 import {
   Accordion,
   AccordionItem,
@@ -20,7 +18,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { FormattedKill, showKills } from "@/lib/members";
+import { fetchSingelReportData, FormattedKill, showKills } from "@/lib/members";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface Difficulty {
   id: number;
@@ -64,7 +64,8 @@ function parseDuration(startTime: number, endTime: number): string {
 }
 
 export default function ClientLogPage({ initialLog }: ClientLogPageProps) {
-  const [selectedKill, setSelectedKill] = useState<FormattedKill | null>(null);
+  const router = useRouter();
+  const { slug } = router.query;
 
   const fights = initialLog.fights || [];
   const difficultyMap: { [key: number]: string } = {
@@ -82,10 +83,6 @@ export default function ClientLogPage({ initialLog }: ClientLogPageProps) {
         .map((fight) => [fight.encounterID, fight])
     ).values()
   );
-
-  if (selectedKill) {
-    return <BossKillDetails kill={selectedKill} />;
-  }
 
   return (
     <div className="px-2">
@@ -129,7 +126,9 @@ export default function ClientLogPage({ initialLog }: ClientLogPageProps) {
                         <div className="p-4 bg-gray-800 rounded-lg">
                           {" "}
                           <p>
-                            <strong>Boss:</strong> {encounter.name}
+                            <Link href={} className="cursor-pointer">
+                              <strong>Boss:</strong> {encounter.name}
+                            </Link>
                           </p>
                           <p>
                             <strong>Duration:</strong>{" "}
