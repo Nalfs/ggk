@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Heading from "@/components/Heading";
 import ShareLinkButton from "@/components/ShareLinkButton";
 import { formatTime } from "@/lib/utils";
@@ -46,6 +46,7 @@ interface ClientLogPageProps {
     endTime: number;
     fights?: Encounter[]; // Make fights optional
   };
+  slug: string; // The slug is passed here as a prop
 }
 
 function getWipeCount(encounterID: number, fights: Encounter[]): number {
@@ -63,9 +64,19 @@ function parseDuration(startTime: number, endTime: number): string {
   return `${minutes}:${formattedSeconds}`;
 }
 
-export default function ClientLogPage({ initialLog }: ClientLogPageProps) {
-  const router = useRouter();
-  const { slug } = router.query;
+export default function ClientLogPage({
+  initialLog,
+  slug,
+}: ClientLogPageProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return <p>Loading...</p>;
+  }
 
   const fights = initialLog.fights || [];
   const difficultyMap: { [key: number]: string } = {
@@ -75,15 +86,15 @@ export default function ClientLogPage({ initialLog }: ClientLogPageProps) {
     4: "Heroic",
     5: "Mythic",
   };
-  // Extract unique encounters by encounterID
+
   const uniqueEncounters: Encounter[] = Array.from(
     new Map(
       fights
-        .filter((fight) => fight.encounterID > 0) // Filter out encounters with encounterID <= 0
+        .filter((fight) => fight.encounterID > 0)
         .map((fight) => [fight.encounterID, fight])
     ).values()
   );
-
+  console.log("my slug :", slug);
   return (
     <div className="px-2">
       <div className="flex justify-center text-center">
@@ -111,8 +122,13 @@ export default function ClientLogPage({ initialLog }: ClientLogPageProps) {
               {uniqueEncounters.map((encounter: Encounter, index: number) => (
                 <TableRow key={index}>
                   <TableCell>
-                    {encounter.name}{" "}
-                    {difficultyMap[encounter.difficulty] || "Unknown"}
+                    <Link
+                      href={`/logs/${slug}/${encounter.encounterID}`}
+                      className="cursor-pointer"
+                    >
+                      {encounter.name}{" "}
+                      {difficultyMap[encounter.difficulty] || "Unknown"}
+                    </Link>
                   </TableCell>
                   <TableCell className="w-48">
                     {" "}
@@ -126,9 +142,7 @@ export default function ClientLogPage({ initialLog }: ClientLogPageProps) {
                         <div className="p-4 bg-gray-800 rounded-lg">
                           {" "}
                           <p>
-                            <Link href={} className="cursor-pointer">
-                              <strong>Boss:</strong> {encounter.name}
-                            </Link>
+                            <strong>Boss:</strong> {encounter.name}
                           </p>
                           <p>
                             <strong>Duration:</strong>{" "}
