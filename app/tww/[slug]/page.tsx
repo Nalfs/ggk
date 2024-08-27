@@ -51,9 +51,7 @@ const contentData: Record<
 const Page = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
   const content = contentData[slug as keyof typeof contentData];
-  console.log("slug", slug);
 
-  // Fallback for unknown slug
   if (!content) {
     return <p>Content not found</p>;
   }
