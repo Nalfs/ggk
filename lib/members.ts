@@ -211,3 +211,15 @@ const formatDuration = (durationInSeconds: number): string => {
     seconds < 10 ? "0" : ""
   }${seconds}`;
 };
+
+/**
+ * Fetches a singel boss encounter
+ */
+export async function fetchSingelReportData(reportId: string) {
+  const response = await fetch(`/warcraft-logs?reportId=${reportId}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const data = await response.json();
+  return data;
+}
