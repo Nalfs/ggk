@@ -11,7 +11,10 @@ export default function AboutPage() {
     <>
       <div className="container mx-auto py-10">
         <Heading>Gamla Gubbar Kan</Heading>
-        <p>Är en casual horde guild på Tarren Mill med fokus på raid & m+.</p>
+        <p>
+          Är en mid-core semi-casual horde guild på Tarren Mill med fokus på
+          raid & m+.
+        </p>
         <p>
           {" "}
           Som guild har vi ingen CE ambition eller planer på att clear:a hela

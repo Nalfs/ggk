@@ -1,4 +1,4 @@
-export async function getWarcraftLogsData(slug: string, bossId: string) {
+/* export async function getWarcraftLogsData(slug: string, bossId: string) {
   const tokenUrl = "https://www.warcraftlogs.com/oauth/token";
   const apiUrl = "https://www.warcraftlogs.com/api/v2/client";
   const clientId = process.env.CLIENT_ID;
@@ -71,6 +71,7 @@ export async function getWarcraftLogsData(slug: string, bossId: string) {
         }
       }
     `;
+
     console.log("pre reponse");
     console.log(apiUrl);
     console.log(accessToken);
@@ -91,23 +92,136 @@ export async function getWarcraftLogsData(slug: string, bossId: string) {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(
+        `Failed to fetch data: ${response.statusText} - ${errorText}`
+      );
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
 
     const result = await response.json();
     console.log("hitting route:: result", result);
-
+    console.dir(result, { depth: null });
+    const report = result?.data?.reportData?.report;
+    if (!report || !report.fights || report.fights.length === 0) {
+      throw new Error("No fights found in the report");
+    }
     const { fights, masterData, table, healing } =
       result.data.reportData.report;
     const fight = fights[0]; // Assuming one fight is returned
 
-    // Process raid composition
     const raidComposition = masterData.actors.filter((actor: any) =>
       fight.friendlyPlayers.includes(actor.id)
     );
 
     const dpsData = table.data.entries;
     const hpsData = healing.data.entries;
+
+    return {
+      raidComposition,
+      dpsData,
+      hpsData,
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
+}
+ */
+export async function getWarcraftLogsData(slug: string, bossId: string) {
+  console.log("start fetch");
+  const clientId = process.env.CLIENT_ID;
+  const clientSecret = process.env.CLIENT_SECRET;
+  const tokenUrl = "https://www.warcraftlogs.com/oauth/token";
+  const apiUrl = "https://www.warcraftlogs.com/api/v2/client";
+
+  try {
+    // Step 1: Fetch access token
+    const tokenResponse = await fetch(tokenUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${Buffer.from(
+          `${clientId}:${clientSecret}`
+        ).toString("base64")}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "grant_type=client_credentials",
+    });
+
+    if (!tokenResponse.ok) {
+      throw new Error("Failed to retrieve access token");
+    }
+
+    const tokenData = await tokenResponse.json();
+    const accessToken = tokenData.access_token;
+    console.log(tokenData);
+    console.log(accessToken);
+    // Step 2: Fetch data from the Warcraft Logs v2 API
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+           query GetEncounterDetails($reportCode: String!, $encounterID: Int!) {
+        reportData {
+          report(code: $reportCode) {
+            fights(encounterID: $encounterID) {
+              id
+              name
+              averageItemLevel
+              friendlyPlayers
+            }
+            masterData {
+              actors {
+                id
+                name
+                type
+                subType
+                gameID
+              }
+            }
+            rankings: rankings(encounterID: $encounterID)
+          }
+        }
+      }
+        `,
+        variables: {
+          reportCode: slug,
+          encounterID: parseInt(bossId),
+        },
+      }),
+    });
+
+    // Check if the response is ok (status in the range 200-299)
+    /*     if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Error from Warcraft Logs API:", errorText);
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
+    } */
+    console.log("##### resp", response);
+    // Attempt to parse the JSON response
+    const result = await response.json();
+    console.log("####result", result);
+    console.dir(result, { depth: null });
+
+    const report = result?.data?.reportData?.report;
+    if (!report || !report.fights || report.fights.length === 0) {
+      throw new Error("No fights found in the report");
+    }
+
+    const fight = report.fights[0]; // Assuming one fight is returned
+
+    // Process raid composition
+    const raidComposition = report.masterData.actors.filter((actor: any) =>
+      fight.friendlyPlayers.includes(actor.id)
+    );
+    console.log("#####", raidComposition);
+
+    const dpsData = report.table.data.entries;
+    const hpsData = report.healing.data.entries;
 
     return {
       raidComposition,
