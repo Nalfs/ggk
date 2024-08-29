@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "../../dataTable";
-import { ColumnDef } from "@tanstack/react-table"; // Adjust this import based on your setup
+import { ColumnDef } from "@tanstack/react-table";
+import { ClassIcon } from "@/components/ClassIconComponent";
 
 interface Character {
   class: string;
@@ -19,7 +20,7 @@ export const columns: ColumnDef<Character>[] = [
   {
     accessorKey: "class",
     header: "Class",
-    cell: ({ row }) => <span>{row.original.class}</span>,
+    cell: ({ row }) => <ClassIcon className={row.original.class} />, // Using ClassIcon component
   },
   {
     accessorKey: "name",
@@ -28,57 +29,55 @@ export const columns: ColumnDef<Character>[] = [
   },
   {
     accessorKey: "amount",
-    header: ({ column }) => {
-      return (
-        <div className="text-center">
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Amount
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
-      );
-    },
-    cell: ({ row }) => <div className="text-center">{row.original.amount}</div>,
+    header: ({ column }) => (
+      <div className="text-center">
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Amount
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      </div>
+    ),
+    cell: ({ row }) => (
+      <div className="text-center">{row.original.amount.toFixed(2)}</div>
+    ),
   },
   {
     accessorKey: "rankPercent",
-    header: ({ column }) => {
-      return (
-        <div className="text-center">
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Parse%
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div className="text-center">
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Parse%
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      </div>
+    ),
     cell: ({ row }) => (
-      <div className="text-center">{row.original.rankPercent}</div>
+      <div className="text-center">{row.original.rankPercent.toFixed(2)}%</div>
     ),
   },
   {
     accessorKey: "bracketPercent",
-    header: ({ column }) => {
-      return (
-        <div className="text-center">
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Parse ilvl %
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div className="text-center">
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Parse ilvl %
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      </div>
+    ),
     cell: ({ row }) => (
-      <div className="text-center">{row.original.bracketPercent}</div>
+      <div className="text-center">
+        {row.original.bracketPercent.toFixed(2)}%
+      </div>
     ),
   },
 ];
@@ -92,14 +91,11 @@ export default function ClientBossLogPage({
   dpsCharacters: any[];
   hpsCharacters: any[];
 }) {
-  // Example of adding state management
   const [sorting, setSorting] = useState([]);
   const [filteredDpsCharacters, setFilteredDpsCharacters] =
     useState(dpsCharacters);
   const [filteredHpsCharacters, setFilteredHpsCharacters] =
     useState(hpsCharacters);
-
-  // Add sorting, filtering logic here
 
   return (
     <Tabs>
