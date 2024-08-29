@@ -100,8 +100,13 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
           textAlign: "center",
         }}
       >
-        TWW Early Access
+        The War Within Season 1 Begins
       </span>
+      <p>
+        {" "}
+        Normal and Heroic raid difficulty, Raid Finder Wing 1, Mythic 0
+        Dungeons, Heroic Seasonal dungeons, a new World Boss, and PvP Season 1
+      </p>
       <div
         style={{
           display: "flex",

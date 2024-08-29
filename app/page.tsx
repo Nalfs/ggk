@@ -47,7 +47,7 @@ export default async function Home() {
   return (
     <div className="container mx-auto py-10 px-4">
       <div className="flex items-center justify-center mb-8">
-        <Countdown targetDate={"2024-08-22T15:00:00-07:00"} />
+        <Countdown targetDate={"2024-09-10T15:00:00-07:00"} />
       </div>
 
       <h1 className="text-3xl font-bold text-center mb-8">Upcoming Events</h1>
