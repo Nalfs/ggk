@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "../../dataTable";
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, SortingState } from "@tanstack/react-table";
 import { ClassIcon } from "@/components/ClassIconComponent";
 
 interface Character {
@@ -89,14 +89,9 @@ export default function ClientBossLogPage({
   dpsCharacters: any[];
   hpsCharacters: any[];
 }) {
-  const [sorting, setSorting] = useState([]);
-  const [filteredDpsCharacters, setFilteredDpsCharacters] =
-    useState(dpsCharacters);
-  const [filteredHpsCharacters, setFilteredHpsCharacters] =
-    useState(hpsCharacters);
-
+  const initialSorting: SortingState = [{ id: "amount", desc: true }];
   return (
-    <Tabs>
+    <Tabs defaultValue="dps">
       <TabsList>
         <TabsTrigger value="overall">Overall</TabsTrigger>
         <TabsTrigger value="dps">DPS</TabsTrigger>
@@ -108,11 +103,19 @@ export default function ClientBossLogPage({
       </TabsContent>
 
       <TabsContent value="dps">
-        <DataTable columns={columns} data={filteredDpsCharacters} />
+        <DataTable
+          columns={columns}
+          data={dpsCharacters}
+          initialSort={initialSorting}
+        />
       </TabsContent>
 
       <TabsContent value="hps">
-        <DataTable columns={columns} data={filteredHpsCharacters} />
+        <DataTable
+          columns={columns}
+          data={hpsCharacters}
+          initialSort={initialSorting}
+        />
       </TabsContent>
     </Tabs>
   );
