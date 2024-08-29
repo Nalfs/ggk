@@ -1,11 +1,5 @@
 import { getWarcraftLogsData } from "@/lib/bosskilldata";
-import React from "react";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
+import React, { useMemo } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
@@ -14,6 +8,8 @@ import {
   TableRow,
   TableCell,
 } from "@/components/ui/table";
+import { DataTable } from "../../dataTable";
+import ClientBossLogPage from "./ClientBossLogPage";
 
 const difficultyMap: { [key: number]: string } = {
   1: "M+",
@@ -35,20 +31,15 @@ export default async function BossDetailsPage({
   const { raidComposition, rankings, fights } = data;
   const bossName = fights?.[0]?.name;
   const difficultyNumber = rankings?.data?.[0]?.difficulty;
+  const difficultyMap: { [key: number]: string } = {
+    1: "M+",
+    2: "LFR",
+    3: "Normal",
+    4: "Heroic",
+    5: "Mythic",
+  };
   const difficulty = difficultyMap[difficultyNumber];
   const roles = rankings?.data?.[0]?.roles;
-
-  const getTableRows = (characters: any[]) => {
-    return characters.map((character) => (
-      <TableRow key={character.id}>
-        <TableCell>{character.class}</TableCell>
-        <TableCell>{character.name}</TableCell>
-        <TableCell>{character.amount.toFixed(2)}</TableCell>
-        <TableCell>{character.rankPercent}%</TableCell>
-        <TableCell>{character.bracketPercent}%</TableCell>
-      </TableRow>
-    ));
-  };
 
   // Combine DPS and Tank characters into one array for the DPS tab
   const dpsCharacters = [
@@ -58,8 +49,6 @@ export default async function BossDetailsPage({
 
   // Use only Healers for the HPS tab
   const hpsCharacters = [...(roles?.healers?.characters || [])];
-
-  /* console.log("########## START RANKS", rankings?.data?.[0]); */
 
   return (
     <div className="container flex py-10 px-4 justify-center">
@@ -80,59 +69,13 @@ export default async function BossDetailsPage({
         <p>
           <strong>Size:</strong> {fights?.[0]?.size}
         </p>
-        {/* Tabs Section */}
-        <Tabs>
-          <TabsList>
-            <TabsTrigger value="overall">Overall</TabsTrigger>
-            <TabsTrigger value="dps">DPS</TabsTrigger>
-            <TabsTrigger value="hps">HPS</TabsTrigger>
-          </TabsList>
 
-          <TabsContent value="overall">
-            <p>Overall data will be here.</p>
-          </TabsContent>
-
-          <TabsContent value="dps">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableCell>Class</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Parse %</TableCell>
-                  <TableCell>Parse ilvl %</TableCell>
-                </TableRow>
-              </TableHeader>
-              <TableBody>{getTableRows(dpsCharacters)}</TableBody>
-            </Table>
-          </TabsContent>
-
-          <TabsContent value="hps">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableCell>Class</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Parse %</TableCell>
-                  <TableCell>Parse ilvl %</TableCell>
-                </TableRow>
-              </TableHeader>
-              <TableBody>{getTableRows(hpsCharacters)}</TableBody>
-            </Table>
-          </TabsContent>
-        </Tabs>
-
-        {/* Raid Composition Section */}
-        {/*    <div>
-          <h2>Raid Composition</h2>
-          {raidComposition &&
-            raidComposition.map((actor: any) => (
-              <p key={actor.id}>
-                {actor.name} - {actor.type}/{actor.subType}
-              </p>
-            ))}
-        </div> */}
+        {/* Pass the data to the client-side component */}
+        <ClientBossLogPage
+          raidComposition={raidComposition}
+          dpsCharacters={dpsCharacters}
+          hpsCharacters={hpsCharacters}
+        />
       </div>
     </div>
   );
