@@ -5,17 +5,7 @@ import Image from "next/image";
 import DPSIcon from "@/public/images/role/dps.jpg";
 import HealerIcon from "@/public/images/role/healer2.jpg";
 import TankIcon from "@/public/images/role/tank.jpg";
-
-type WowClass = {
-  name: string;
-  color: string;
-  raidBuff: string | string[];
-  icon: string;
-};
-
-type WowClasses = {
-  [key: string]: WowClass;
-};
+import { ClassIcon } from "./ClassIconComponent";
 
 type Role = "Tank" | "DPS" | "Healer" | "Support"; // Added "Support" as a role
 
@@ -124,17 +114,8 @@ const ClassSummaryTable = ({ data }: { data: DataEntry[] }) => {
 
               return (
                 <TableRow key={classKey}>
-                  <TableCell style={{ color: wowClass.color }}>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      {wowClass.name}
-                      <Image
-                        src={wowClass.icon}
-                        alt={wowClass.name}
-                        width={16}
-                        height={16}
-                        style={{ marginLeft: "8px" }}
-                      />
-                    </div>
+                  <TableCell>
+                    <ClassIcon className={wowClass.name} />
                   </TableCell>
                   <TableCell className="text-center align-middle">
                     {roles.Tank && (
