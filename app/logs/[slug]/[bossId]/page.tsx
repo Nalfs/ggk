@@ -1,14 +1,5 @@
 import { getWarcraftLogsData } from "@/lib/bosskilldata";
-import React, { useMemo } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableCell,
-} from "@/components/ui/table";
-import { DataTable } from "../../dataTable";
+import React from "react";
 import ClientBossLogPage from "./ClientBossLogPage";
 
 const difficultyMap: { [key: number]: string } = {

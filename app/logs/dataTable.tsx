@@ -56,13 +56,14 @@ export function DataTable<TData, TValue>({
   return (
     <div className="rounded">
       <div className="flex items-center py-4">
+        {/* ##  only sorts on "owner prop as of now" */}
         <Input
           placeholder="Filter logs by owner..."
           value={(table.getColumn("owner")?.getFilterValue() as string) ?? ""}
           onChange={(event: any) =>
             table.getColumn("owner")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm bg-white"
+          className="max-w-sm bg-white text-black"
         />
       </div>
       <div className="rounded-md border">
