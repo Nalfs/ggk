@@ -23,11 +23,6 @@ export type Log = {
   end: any;
 };
 
-// const handleClick = (context: any) => () => {
-//   console.log(context);
-//   alert(`Clicked log ID: ${context}`);
-// };
-
 export const columns: ColumnDef<Log>[] = [
   {
     accessorKey: "id",

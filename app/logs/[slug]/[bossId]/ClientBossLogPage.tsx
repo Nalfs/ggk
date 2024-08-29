@@ -58,7 +58,7 @@ export const columns: ColumnDef<Character>[] = [
       </div>
     ),
     cell: ({ row }) => (
-      <div className="text-center">{row.original.rankPercent.toFixed(2)}%</div>
+      <div className="text-center">{row.original.rankPercent}%</div>
     ),
   },
   {
@@ -75,9 +75,7 @@ export const columns: ColumnDef<Character>[] = [
       </div>
     ),
     cell: ({ row }) => (
-      <div className="text-center">
-        {row.original.bracketPercent.toFixed(2)}%
-      </div>
+      <div className="text-center">{row.original.bracketPercent}%</div>
     ),
   },
 ];

@@ -94,7 +94,7 @@ export default function ClientLogPage({
         .map((fight) => [fight.encounterID, fight])
     ).values()
   );
-  console.log("my slug :", slug);
+
   return (
     <div className="px-2">
       <div className="flex justify-center text-center">

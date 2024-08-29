@@ -51,8 +51,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  //console.log("table data", data);
-
   return (
     <div className="rounded">
       <div className="flex items-center py-4">

@@ -35,7 +35,7 @@ type WowClass = {
   raidBuff: string | string[];
   icon: string;
 };
-type WowClasses = {
+export type WowClasses = {
   deathKnight: WowClass;
   demonHunter: WowClass;
   druid: WowClass;

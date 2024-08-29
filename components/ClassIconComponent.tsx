@@ -23,7 +23,13 @@ export const ClassIcon: React.FC<ClassIconProps> = ({ className }) => {
     warrior: "warrior",
   };
 
-  const classKey = classMap[className.toLowerCase()];
+  // temp fix untile ProccessData is fixed in ClassSummaryTable
+  // Function to remove whitespaces
+  const normalizeClassName = (name: string) => name.replace(/\s+/g, "");
+
+  // Normalize and find the classKey
+  const normalizedClassName = normalizeClassName(className.toLowerCase());
+  const classKey = classMap[normalizedClassName];
 
   const wowClass = wowClasses[classKey];
 

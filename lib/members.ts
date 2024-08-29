@@ -177,7 +177,6 @@ export interface FormattedKill {
 }
 
 export const showKills = (bossData: BossData[] = []): FormattedKill[] => {
-  console.log("#### BOSS DATA", bossData);
   // If bossData is not an array, return an empty array
   if (!Array.isArray(bossData)) {
     console.error("Expected bossData to be an array, but received:", bossData);

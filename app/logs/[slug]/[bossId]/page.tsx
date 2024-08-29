@@ -37,7 +37,6 @@ export default async function BossDetailsPage({
     ...(roles?.tanks?.characters || []),
     ...(roles?.dps?.characters || []),
   ];
-  console.log("#######dpsCharacters", dpsCharacters);
 
   // Use only Healers for the HPS tab
   const hpsCharacters = [...(roles?.healers?.characters || [])];
