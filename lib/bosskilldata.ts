@@ -128,7 +128,12 @@
   }
 }
  */
-export async function getWarcraftLogsData(slug: string, bossId: string) {
+export async function getWarcraftLogsData(
+  slug: string,
+  bossId: string
+): Promise<WarcraftLogs.Result | null> {
+  console.log("start fetch");
+  const util = require("util");
   console.log("start fetch");
   const clientId = process.env.CLIENT_ID;
   const clientSecret = process.env.CLIENT_SECRET;
@@ -154,8 +159,7 @@ export async function getWarcraftLogsData(slug: string, bossId: string) {
 
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
-    console.log(tokenData);
-    console.log(accessToken);
+
     // Step 2: Fetch data from the Warcraft Logs v2 API
     const response = await fetch(apiUrl, {
       method: "POST",
@@ -166,28 +170,30 @@ export async function getWarcraftLogsData(slug: string, bossId: string) {
       body: JSON.stringify({
         query: `
            query GetEncounterDetails($reportCode: String!, $encounterID: Int!) {
-        reportData {
-          report(code: $reportCode) {
-            fights(encounterID: $encounterID) {
-              id
-              name
-              averageItemLevel
-              friendlyPlayers
-            }
-            masterData {
-              actors {
-                id
-                name
-                type
-                subType
-                gameID
+            reportData {
+              report(code: $reportCode) {
+                fights(encounterID: $encounterID) {
+                  id
+                  name
+                  averageItemLevel
+                  kill
+                  size
+                  friendlyPlayers
+                }
+                masterData {
+                  actors {
+                    id
+                    name
+                    type
+                    subType
+                    gameID
+                  }
+                }
+                rankings: rankings(encounterID: $encounterID)
               }
             }
-            rankings: rankings(encounterID: $encounterID)
           }
-        }
-      }
-        `,
+            `,
         variables: {
           reportCode: slug,
           encounterID: parseInt(bossId),
@@ -201,11 +207,17 @@ export async function getWarcraftLogsData(slug: string, bossId: string) {
       console.error("Error from Warcraft Logs API:", errorText);
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     } */
-    console.log("##### resp", response);
+    //console.log("##### resp", response);
     // Attempt to parse the JSON response
-    const result = await response.json();
-    console.log("####result", result);
-    console.dir(result, { depth: null });
+    const result: WarcraftLogs.Response = await response.json();
+    /*    console.log("####result", result);
+    console.dir(result, { depth: null }); */
+    //console.dir(result.data, { depth: null });
+
+    console.log("#############################");
+    console.log(
+      util.inspect(result.data, { depth: 3, colors: true, maxArrayLength: 10 })
+    );
 
     const report = result?.data?.reportData?.report;
     if (!report || !report.fights || report.fights.length === 0) {
@@ -215,18 +227,16 @@ export async function getWarcraftLogsData(slug: string, bossId: string) {
     const fight = report.fights[0]; // Assuming one fight is returned
 
     // Process raid composition
-    const raidComposition = report.masterData.actors.filter((actor: any) =>
+    const raidComposition = report.masterData.actors.filter((actor) =>
       fight.friendlyPlayers.includes(actor.id)
     );
-    console.log("#####", raidComposition);
+    const rankings = report.rankings;
 
-    const dpsData = report.table.data.entries;
-    const hpsData = report.healing.data.entries;
+    //* DO I NEED TO RETURN FIGHTS ASWELL?***
 
     return {
       raidComposition,
-      dpsData,
-      hpsData,
+      rankings,
     };
   } catch (error) {
     console.error("Error fetching data:", error);

@@ -12,7 +12,7 @@ export default async function BossDetailsPage({
     return <p>Error fetching data</p>;
   }
 
-  const { raidComposition, dpsData, hpsData } = data;
+  const { raidComposition } = data;
 
   return (
     <div className="px-2">
@@ -36,7 +36,7 @@ export default async function BossDetailsPage({
       </div>
 
       {/* Damage Done Section */}
-      <div>
+      {/*  <div>
         <h2>Damage Done</h2>
         {dpsData.map((entry: any, index: number) => (
           <div key={index}>
@@ -46,10 +46,10 @@ export default async function BossDetailsPage({
             </p>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* Healing Done Section */}
-      <div>
+      {/*  <div>
         <h2>Healing Done</h2>
         {hpsData.map((entry: any, index: number) => (
           <div key={index}>
@@ -59,7 +59,7 @@ export default async function BossDetailsPage({
             </p>
           </div>
         ))}
-      </div>
+      </div>*/}
     </div>
   );
 }
