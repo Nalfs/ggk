@@ -128,12 +128,12 @@
   }
 }
  */
+import { inspect } from "util";
+
 export async function getWarcraftLogsData(
   slug: string,
   bossId: string
 ): Promise<WarcraftLogs.Result | null> {
-  console.log("start fetch");
-  const util = require("util");
   console.log("start fetch");
   const clientId = process.env.CLIENT_ID;
   const clientSecret = process.env.CLIENT_SECRET;
@@ -201,26 +201,23 @@ export async function getWarcraftLogsData(
       }),
     });
 
-    // Check if the response is ok (status in the range 200-299)
-    /*     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Error from Warcraft Logs API:", errorText);
-      throw new Error(`Failed to fetch data: ${response.statusText}`);
-    } */
-    //console.log("##### resp", response);
-    // Attempt to parse the JSON response
     const result: WarcraftLogs.Response = await response.json();
-    /*    console.log("####result", result);
-    console.dir(result, { depth: null }); */
-    //console.dir(result.data, { depth: null });
 
     console.log("#############################");
     console.log(
-      util.inspect(result.data, { depth: 3, colors: true, maxArrayLength: 10 })
+      inspect(result, {
+        depth: 3,
+        colors: true,
+        maxArrayLength: 10,
+      })
     );
 
     const report = result?.data?.reportData?.report;
-    if (!report || !report.fights || report.fights.length === 0) {
+    if (
+      !report ||
+      !Array.isArray(report.fights) ||
+      report.fights.length === 0
+    ) {
       throw new Error("No fights found in the report");
     }
 
@@ -231,12 +228,12 @@ export async function getWarcraftLogsData(
       fight.friendlyPlayers.includes(actor.id)
     );
     const rankings = report.rankings;
-
-    //* DO I NEED TO RETURN FIGHTS ASWELL?***
+    console.log(fight);
 
     return {
       raidComposition,
       rankings,
+      fights: report.fights,
     };
   } catch (error) {
     console.error("Error fetching data:", error);

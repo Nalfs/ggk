@@ -17,7 +17,7 @@ namespace WarcraftLogs {
   }
 
   export interface Rankings {
-    data: any[]; // Define a more specific type based on the actual structure of rankings if available
+    data: any[]; // You can define a more specific type here if you know the structure of rankings data
   }
 
   export interface Report {
@@ -32,12 +32,17 @@ namespace WarcraftLogs {
     report: Report;
   }
 
-  export interface Response {
+  export interface Data {
     reportData: ReportData;
+  }
+
+  export interface Response {
+    data: Data;
   }
 
   export interface Result {
     raidComposition: Actor[];
     rankings: Rankings;
+    fights?: Fight[];
   }
 }
