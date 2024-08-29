@@ -203,15 +203,22 @@ export async function getWarcraftLogsData(
 
     const result: WarcraftLogs.Response = await response.json();
 
-    console.log("#############################");
+    /*     console.log("#############################");
     console.log(
       inspect(result, {
         depth: 3,
         colors: true,
         maxArrayLength: 10,
       })
-    );
-
+    ); */
+    /*     console.log("#############################");
+    console.log(
+      inspect(result.data.reportData.report.rankings, {
+        depth: 3,
+        colors: true,
+        maxArrayLength: 10,
+      })
+    ); */
     const report = result?.data?.reportData?.report;
     if (
       !report ||
@@ -228,8 +235,7 @@ export async function getWarcraftLogsData(
       fight.friendlyPlayers.includes(actor.id)
     );
     const rankings = report.rankings;
-    console.log(fight);
-
+    //console.dir(rankings, { depth: null });
     return {
       raidComposition,
       rankings,
