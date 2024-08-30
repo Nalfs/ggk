@@ -81,14 +81,15 @@ export async function getWarcraftLogsData(
         maxArrayLength: 10,
       })
     ); */
-    /*     console.log("#############################");
-    console.log(
-      inspect(result.data.reportData.report.rankings, {
-        depth: 3,
-        colors: true,
-        maxArrayLength: 10,
-      })
-    ); */
+    // console.log("#############################");
+    // console.dir(result.data.reportData.report.rankings, { depth: null });
+    // console.log(
+    //   inspect(result.data.reportData.report.rankings, {
+    //     depth: 3,
+    //     colors: true,
+    //     maxArrayLength: 10,
+    //   })
+    // );
     const report = result?.data?.reportData?.report;
     if (
       !report ||

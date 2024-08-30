@@ -20,6 +20,7 @@ export default async function BossDetailsPage({
     return <p>Error fetching data</p>;
   }
   const { raidComposition, rankings, fights } = data;
+
   const bossName = fights?.[0]?.name;
   const difficultyNumber = rankings?.data?.[0]?.difficulty;
   const difficultyMap: { [key: number]: string } = {
@@ -36,6 +37,7 @@ export default async function BossDetailsPage({
   const dpsCharacters = [
     ...(roles?.tanks?.characters || []),
     ...(roles?.dps?.characters || []),
+    ...(roles?.healers?.characters || []),
   ];
 
   // Use only Healers for the HPS tab

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { DataTable } from "../../dataTable";
 import { ColumnDef, SortingState } from "@tanstack/react-table";
 import { ClassIcon } from "@/components/ClassIconComponent";
+import ProgressComponent from "@/components/ProgressComponent";
 
 interface Character {
   class: string;
@@ -20,7 +21,7 @@ export const columns: ColumnDef<Character>[] = [
   {
     accessorKey: "class",
     header: "Class",
-    cell: ({ row }) => <ClassIcon className={row.original.class} />, // Using ClassIcon component
+    cell: ({ row }) => <ClassIcon className={row.original.class} />,
   },
   {
     accessorKey: "name",
@@ -40,9 +41,21 @@ export const columns: ColumnDef<Character>[] = [
         </Button>
       </div>
     ),
-    cell: ({ row }) => (
-      <div className="text-center">{row.original.amount.toFixed(2)}</div>
-    ),
+    cell: ({ row, table }) => {
+      // Calculate the total DPS/HPS by summing the amount field for all rows
+      const totalAmount = table
+        .getRowModel()
+        .rows.reduce((sum, row) => sum + row.original.amount, 0);
+      // Calculate the percentage of the current row's amount relative to the total
+      const percentage = (row.original.amount / totalAmount) * 100;
+
+      return (
+        <div className="flex flex-col items-center">
+          <span>{row.original.amount.toFixed(2)}</span>
+          <ProgressComponent value={percentage} />
+        </div>
+      );
+    },
   },
   {
     accessorKey: "rankPercent",
