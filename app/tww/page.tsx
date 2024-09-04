@@ -20,6 +20,9 @@ const Page = () => {
     setIsModalOpen(false);
   };
 
+  const iframeSrc =
+    "https://docs.google.com/forms/d/e/1FAIpQLSeKz6KT_z7RDPw0GuPIELygGOgcWysIipJD_YYPnWO5Bkxksg/viewform?embedded=true";
+
   return (
     <>
       <div className="container mx-auto py-10">
@@ -77,7 +80,7 @@ const Page = () => {
                 ></div>
               }
             >
-              <LazyIframe />
+              <LazyIframe src={iframeSrc} />
             </Suspense>
           </div>
         </div>

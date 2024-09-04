@@ -1,15 +1,18 @@
 import React from "react";
 
-const LazyIframe = () => {
+interface LazyIframeProps {
+  src: string;
+}
+
+const LazyIframe: React.FC<LazyIframeProps> = ({ src }) => {
   return (
     <iframe
-      src="https://docs.google.com/forms/d/1-AkoP08BVeLt2nF2t42MXpblpnDSh4HUhlOsPt6-o2M/viewform?embedded=true"
+      src={src}
       width="100%"
       height="1200px"
       frameBorder="0"
       marginHeight={0}
       marginWidth={0}
-      // style={{ border: "none", height: "100%" }}
     >
       Loading…
     </iframe>
