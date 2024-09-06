@@ -11,13 +11,18 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 const imagePaths = [
+  "/images/guild/1.jpg",
+  "/images/guild/2.jpg",
+  "/images/guild/3.jpg",
   "/images/guild/20240628_204712.jpg",
-  "/images/guild/IMG_0364.jpg",
-  "/images/guild/IMG_0365.jpg",
   "/images/guild/IMG_0371.jpg",
   "/images/guild/IMG_0751.jpg",
   "/images/guild/IMG_0934.jpg",
   "/images/guild/diego_knight.jpg",
+  "/images/guild/4.jpg",
+  "/images/guild/5.jpg",
+  "/images/guild/6.jpg",
+  "/images/guild/7.jpg",
   "/images/guild/IMG_0996.jpg",
   "/images/guild/IMG_0998.jpg",
   "/images/guild/IMG_5304.jpg",
@@ -46,8 +51,10 @@ export default function ImageCarousel() {
             <Image
               src={src}
               alt={`Image ${index + 1}`}
-              width={300} // Adjust width as necessary
-              height={300} // Adjust height as necessary
+              width={500} // Adjust width as necessary
+              height={500} // Adjust height as necessary
+              style={{ objectFit: "cover" }} // Ensures the image fits within the 300x300 size
+              className="aspect-square" // Makes sure the container has a 1:1 aspect ratio
             />
           </CarouselItem>
         ))}
