@@ -1,15 +1,8 @@
 import * as React from "react";
 import { Button } from "./ui/button";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogOverlay,
-  DialogTitle,
-  DialogDescription,
-} from "./ui/dialog"; // Adjust the import path according to your setup
+import { Dialog, DialogContent, DialogOverlay, DialogTitle } from "./ui/dialog";
 import ClassSummaryComponent from "@/components/ClassSummaryComponent";
-import "./styles.css"; // Make sure this path is correct
+import "./styles.css";
 
 type DataEntry = {
   "Vilken klass vill du main:a?": string;
@@ -18,7 +11,7 @@ type DataEntry = {
 
 type ModalProps = {
   data: DataEntry[];
-  onClose: () => void; // Function to close the modal
+  onClose: () => void;
 };
 
 const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
